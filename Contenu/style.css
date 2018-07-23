@@ -11,3 +11,8 @@ body{
     text-align: center;
     margin-top: 20px;
 }
+
+.commentaire {
+    border: solid 1px;
+    padding: 0 10px;
+}
