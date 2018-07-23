@@ -21,7 +21,7 @@
       </div> <!-- #contenu -->
       <footer class="row footer">
           <div class="col-xs-12">
-              Blog réalisé avec PHP, HTML5 et CSS.
+              <p>Blog réalisé avec PHP, HTML5 et CSS.</p>
           </div>
       </footer>
       </div>
