@@ -28,6 +28,7 @@
             <footer class="row footer">
                 <div class="col-xs-12">
                     <p>Blog réalisé avec PHP, HTML5 et CSS.</p>
+                    <a href="index.php?action=admin">Administration</a>
                 </div>
             </footer>
         </div>
