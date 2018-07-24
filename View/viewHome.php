@@ -1,5 +1,4 @@
-<?php $title = 'Billet simple pour l\'Alaska - Jean Forteroche'; 
-ob_start(); 
+<?php $this->$title = 'Billet simple pour l\'Alaska - Jean Forteroche'; 
 foreach ($posts as $post): ?>
 <article class="col-xs-offset-1 col-xs-10">
     <div>
@@ -11,9 +10,6 @@ foreach ($posts as $post): ?>
     <p><?= $post['contenu'] ?></p>
 </article>
 <hr />
-<?php endforeach;
-$content = ob_get_clean(); 
-
-require 'template.php'; ?>
+<?php endforeach;?>
 
 

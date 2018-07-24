@@ -1,7 +1,7 @@
-<?php $title = strip_tags($post['titre']); 
-ob_start(); ?>
-<div class="row">
-    <div class="col-md-offset-2 col-md-8 col-xs-offset-1 col-xs-10 articleBlog">
+<?php $this->$title = strip_tags($post['titre']); ?>
+
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8 col-xs-offset-1 col-xs-10 articleBlog">
             <div>
                 <h2><?= strip_tags($post['titre']); ?></h2>
                 <p class="articleContent">
@@ -24,7 +24,4 @@ ob_start(); ?>
             </div>
         </div>
     </div>
- <?php endforeach;
-$content = ob_get_clean(); ?>
-
-<?php require 'template.php'; ?>
+ <?php endforeach;?>
