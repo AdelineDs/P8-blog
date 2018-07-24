@@ -22,6 +22,13 @@ class ControlerPost {
     $view->generate(array('post' => $post, 'comments' => $comments));
   }
   
+    // display all posts
+  public function blog(){
+    $posts = $this->post->getPosts();
+    $view = new View("Blog");
+    $view->generate(array('posts' => $posts));
+  }
+  
   // add comment to a post
   public function comment($postId, $author, $comment) {
     // save comment

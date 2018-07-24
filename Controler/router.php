@@ -8,7 +8,8 @@ class Router {
     
     private $ctrlHome;
     private $ctrlPost;
-    
+
+
     public function __construct() {
         $this->ctrlHome = new ControlerHome();
         $this->ctrlPost = new ControlerPost();
@@ -21,16 +22,30 @@ class Router {
                     $postId = intval($this->getParam($_GET, 'id'));
                     if($postId != 0){
                         $this->ctrlPost->post($postId);
-                    }else{
-                        throw new Exception("Identifiant de billet non valide");}
-                   }else if($_GET['action'] == 'comment'){
-                        $author = $this->getParam($_POST, 'author');
-                        $comment = $this->getParam($_POST, 'comment');
-                        $postId = $this->getParam($_POST, 'id');
-                        $this->ctrlPost->comment($postId, $author, $comment);
-                }else{
-                    throw new Exception("Action non valide");}
-           }else{
+                    }
+                    else{
+                        throw new Exception("Identifiant de billet non valide");
+                   }
+                }
+                elseif($_GET['action'] == 'comment'){
+                    if(!empty($_POST['author']) && !empty($_POST['comment'])){
+                         $author = $this->getParam($_POST, 'author');
+                         $comment = $this->getParam($_POST, 'comment');
+                         $postId = $this->getParam($_POST, 'id');
+                         $this->ctrlPost->comment($postId, $author, $comment);
+                    }
+                   else{
+                       throw new Exception("Tous les champs ne sont pas remplis !");
+                   }
+                }
+                elseif($_GET['action'] == 'blog'){
+                    $this->ctrlPost->blog();
+                }
+                else{
+                    throw new Exception("Action non valide");
+                }
+           }
+           else{
                $this->ctrlHome->home();  // default action
             } 
         }
