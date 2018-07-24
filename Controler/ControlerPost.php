@@ -14,11 +14,19 @@ class ControlerPost {
     $this->comment = new Comment();
   }
 
-  // Affiche les détails sur un billet
+  // display post content
   public function post($postId) {
     $post = $this->post->getPost($postId);
     $comments = $this->comment->getComments($postId);
     $view = new View("Post");
     $view->generate(array('post' => $post, 'comments' => $comments));
+  }
+  
+  // add comment to a post
+  public function comment($postId, $author, $comment) {
+    // save comment
+    $this->comment->addComment($postId, $author, $comment); 
+    // refresh post
+    $this->post($postId);
   }
 }

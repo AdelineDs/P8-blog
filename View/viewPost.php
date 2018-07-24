@@ -25,3 +25,9 @@
         </div>
     </div>
  <?php endforeach;?>
+<form method="post" action="index.php?action=comment">
+    <input id="author" name="author" type="text" placeholder="Votre pseudo" required /><br />
+    <textarea id="txtComment" name="comment" rows="4"  placeholder="Votre commentaire" required></textarea><br />
+    <input type="hidden" name="id" value="<?= $post['id'] ?>" />
+    <input type="submit" value="Commenter" />
+</form>

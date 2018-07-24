@@ -26,6 +26,11 @@ class Router {
                             throw new Exception("Identifiant de billet non valide");}
                     }else{
                         throw new Exception("Identifiant de billet non défini");}
+                }else if($_GET['action'] == 'comment'){
+                    $author = $this->getParam($_POST, 'author');
+                    $comment = $this->getParam($_POST, 'comment');
+                    $postId = $this->getParam($_POST, 'id');
+                    $this->ctrlPost->comment($postId, $author, $comment);
                 }else{
                     throw new Exception("Action non valide");}
            }else{
@@ -37,7 +42,15 @@ class Router {
         }
     }
     
-    private function error($msgError){
+    private function getParam($array, $name){
+        if(isset($array[$name])){
+            return $array[$name];
+        }else{
+            throw new Exception("Paramètre '$name' absent");
+        }
+    }
+
+        private function error($msgError){
         $view = new View("Error");
         $view->generate(array('msgError' => $msgError));
 }
