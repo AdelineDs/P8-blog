@@ -18,7 +18,7 @@
                     <ul>
                         <li><a href="index.php">Accueil</a></li>
                         <li><a href="index.php?action=blog">Blog</a></li>
-                        <li><a href="index.php?action=Contact">A Propos</a></li>
+                        <li><a href="index.php?action=contact">A Propos</a></li>
                     </ul>
                 </div>
             </header>

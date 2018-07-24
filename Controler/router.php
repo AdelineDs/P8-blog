@@ -2,17 +2,20 @@
 
 require_once 'Controler/ControlerHome.php';
 require_once 'Controler/ControlerPost.php';
+require_once 'Controler/ControlerContact.php';
 require_once 'View/View.php';
 
 class Router {
     
     private $ctrlHome;
     private $ctrlPost;
+    private $ctrlContact;
 
 
     public function __construct() {
         $this->ctrlHome = new ControlerHome();
         $this->ctrlPost = new ControlerPost();
+        $this->ctrlContact = new ControlerContact();
     }
     
     public function routerQuery(){
@@ -40,6 +43,9 @@ class Router {
                 }
                 elseif($_GET['action'] == 'blog'){
                     $this->ctrlPost->blog();
+                }
+                elseif($_GET['action'] == 'contact'){
+                    $this->ctrlContact->view();
                 }
                 else{
                     throw new Exception("Action non valide");
