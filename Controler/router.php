@@ -18,19 +18,16 @@ class Router {
         try{
             if(isset($_GET['action'])){
                 if($_GET['action'] == 'post'){
-                    if(isset($_GET['id'])){
-                        $postId = intval($_GET['id']);
-                        if($postId != 0){
-                            $this->ctrlPost->post($postId);
-                        }else{
-                            throw new Exception("Identifiant de billet non valide");}
+                    $postId = intval($this->getParam($_GET, 'id'));
+                    if($postId != 0){
+                        $this->ctrlPost->post($postId);
                     }else{
-                        throw new Exception("Identifiant de billet non défini");}
-                }else if($_GET['action'] == 'comment'){
-                    $author = $this->getParam($_POST, 'author');
-                    $comment = $this->getParam($_POST, 'comment');
-                    $postId = $this->getParam($_POST, 'id');
-                    $this->ctrlPost->comment($postId, $author, $comment);
+                        throw new Exception("Identifiant de billet non valide");}
+                   }else if($_GET['action'] == 'comment'){
+                        $author = $this->getParam($_POST, 'author');
+                        $comment = $this->getParam($_POST, 'comment');
+                        $postId = $this->getParam($_POST, 'id');
+                        $this->ctrlPost->comment($postId, $author, $comment);
                 }else{
                     throw new Exception("Action non valide");}
            }else{
