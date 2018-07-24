@@ -12,9 +12,9 @@ class ControlerHome {
   }
 
   // Affiche la liste de tous les billets du blog
-  public function home() {
-    $posts = $this->post->getPosts();
-    $view = new VIEW("Home");
+  public function home(){
+    $posts = $this->post->getLastPosts();
+    $view = new View("Home");
     $view->generate(array('posts' => $posts));
   }
 }
