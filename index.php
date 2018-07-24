@@ -1,14 +1,14 @@
 <?php
 
-require 'Modele/Modele.php';
+require 'Model/Model.php';
 
 try{
-    $billets = getBillets();
-    require 'Vue/vueAccueil.php';
+    $posts = getPosts();
+    require 'View/viewHome.php';
 }
 catch (Exception $e){
-     $msgErreur = $e->getMessage();
-     require 'Vue/vueErreur.php';
+     $msgError = $e->getMessage();
+     require 'View/viewError.php';
  }
         
        
