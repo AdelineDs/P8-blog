@@ -6,20 +6,19 @@ class Post extends Model {
     
     // Return all post order by decreasing id
     public function getPosts(){
-        $bdd = getBdd();
-        $posts = $bdd->query('SELECT id, titre, contenu, auteur, DATE_FORMAT(date_publication, \'%d/%m/%Y à %Hh%imin%ss\')'
-                . ' AS date_publication_fr FROM billets ORDER BY date_publication DESC');
+        $sql = 'SELECT id, title, content, author, DATE_FORMAT(publication_date, \'%d/%m/%Y à %Hh%imin%ss\')'
+                . ' AS publication_date_fr FROM posts ORDER BY publication_date DESC';
+        $posts = $this->executeQuery($sql);
         return $posts;
     }
 
     // return one post
     public function getPost($postId) {
-        $bdd = getBdd();
-        $post = $bdd->prepare('SELECT id, titre, contenu, auteur, DATE_FORMAT(date_publication, \'%d/%m/%Y à %Hh%imin%ss\')'
-                . ' AS date_publication_fr FROM billets WHERE id = ?');
-        $post->execute(array($postId));
+        $sql = 'SELECT id, title, content, author, DATE_FORMAT(publication_date, \'%d/%m/%Y à %Hh%imin%ss\')'
+                . ' AS publication_date_fr FROM posts WHERE id = ?';
+         $post = $this->executeQuery($sql, array($postId));
         if ($post->rowCount() == 1) {
-            return $post->fetch(); // Accès à la première ligne de résultat
+            return $post->fetch(); // Access to the first result line
         }  
         else {
             throw new Exception("Aucun billet ne correspond à l'identifiant '$postId'");

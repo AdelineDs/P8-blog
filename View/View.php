@@ -17,8 +17,8 @@ class View {
         // Generation of the specific part of the view
         $content = $this->generateFile($this->file, $data);
         // generation of the template
-        $view = $this->generateFile('Vue/gabarit.php',
-        array('titre' => $this->title, 'contenu' => $content));
+        $view = $this->generateFile('View/Template.php',
+        array('title' => $this->title, 'content' => $content));
         // Return view
         echo $view;
     }

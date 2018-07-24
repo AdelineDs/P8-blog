@@ -12,7 +12,3 @@ function post($postId){
     $comments = getComments($postId);
     require 'View/viewPost.php';
 }
-
-function error($msgError){
-    require 'View/viewError.php';
-}

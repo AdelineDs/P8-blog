@@ -21,7 +21,7 @@ abstract class Model {
         if($this->bdd == null){
             $this->bdd = new PDO('mysql:host=localhost;dbname=P8;charset=utf8', 'root', 'root', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
         }
-        return $bdd;
+        return $this->bdd;
     }
 
 }
