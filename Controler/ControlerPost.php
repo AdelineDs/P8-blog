@@ -23,10 +23,11 @@ class ControlerPost {
   }
   
     // display all posts
-  public function blog(){
-    $posts = $this->post->getPosts();
+  public function blog($page){
+    $posts = $this->post->getPosts($page);
+    $nbPages = $this->post->getNbPages();
     $view = new View("Blog");
-    $view->generate(array('posts' => $posts));
+    $view->generate(array('posts' => $posts, 'nbPages' => $nbPages));
   }
   
   // add comment to a post

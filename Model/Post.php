@@ -5,14 +5,16 @@ require_once 'Model/Model.php';
 class Post extends Model {
     
     // Return all post order by decreasing id
-    public function getPosts(){
+    public function getPosts($page){
+        $start = ($page-1)*5;
         $sql = 'SELECT id, title, content, author, DATE_FORMAT(publication_date, \'%d/%m/%Y à %Hh%imin%ss\')'
-                . ' AS publication_date_fr FROM posts ORDER BY publication_date DESC';
-        $posts = $this->executeQuery($sql);
+                . ' AS publication_date_fr FROM posts ORDER BY publication_date DESC LIMIT 5 OFFSET '.$start.'';
+//        $sql->bindValue('start', $start, PDO::PARAM_INT);
+        $posts = $this->executeQuery($sql, array($start));
         return $posts;
     }
     
-        // Return all post order by decreasing id
+        // Return latest posts order by decreasing id
     public function getLastPosts(){
         $sql = 'SELECT id, title, content, author, DATE_FORMAT(publication_date, \'%d/%m/%Y à %Hh%imin%ss\')'
                 . ' AS publication_date_fr FROM posts ORDER BY publication_date DESC LIMIT 0,2';
@@ -31,5 +33,13 @@ class Post extends Model {
         else {
             throw new Exception("Aucun billet ne correspond à l'identifiant '$postId'");
         }
-    }  
+    }
+    
+    public function getNbPages(){
+        $sql = 'SELECT COUNT(*) AS nbPosts FROM posts';
+        $data = $this->executeQuery($sql);
+        $nbPosts = $data->fetchColumn();
+        $nbPages = ceil($nbPosts/5);
+        return $nbPages;
+    }
 }

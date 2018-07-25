@@ -45,7 +45,17 @@ class Router {
                    }
                 }
                 elseif($_GET['action'] == 'blog'){
-                    $this->ctrlPost->blog();
+                     if (isset($_GET['page']) && !empty($_GET['page'])){
+                        $page = intval($this->getParam($_GET, 'page'));
+                        if($page > 0){
+                        $this->ctrlPost->blog($page);
+                        }
+                        else{
+                            throw new Exception("Numéro de page non valide");
+                        }
+                    } else {
+                        throw new Exception("Aucun numéro de page");
+                    }
                 }
                 elseif($_GET['action'] == 'contact'){
                     $this->ctrlContact->view();
