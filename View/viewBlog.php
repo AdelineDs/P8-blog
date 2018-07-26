@@ -9,6 +9,18 @@
         <time><?= $post['publication_date_fr'] ?></time>
     </div>
     <p><?= $post['content'] ?></p>
+    <?php
+            if (isset($_SESSION['id']) AND isset($_SESSION['login']))
+            {?>
+            <div class="gestionAdmin">
+                <p>
+                    <strong>Gestion du billet :</strong>
+                    <span><a href="<?= "index.php?action=editPost&id=" . $post['id'] ?>">Modifier</a></span> /
+               </p> 
+            </div>
+            <?php
+             }
+            ?>
 </article>
 <hr/>
 <?php endforeach;?>

@@ -25,10 +25,11 @@ class ControlerPost {
   
     // display all posts
   public function blog($page){
-    $posts = $this->post->getPosts($page);
-    $nbPages = $this->post->getNbPages();
-    $view = new View("Blog");
-    $view->generate(array('posts' => $posts, 'nbPages' => $nbPages));
+      session_start();
+      $posts = $this->post->getPosts($page);
+      $nbPages = $this->post->getNbPages();
+      $view = new View("Blog");
+      $view->generate(array('posts' => $posts, 'nbPages' => $nbPages));
   }
   
   // add comment to a post
@@ -38,4 +39,33 @@ class ControlerPost {
     // refresh post
     $this->post($postId);
   }
+  
+    //affiche le formulaire de rédaction/modification d'un billet
+    public function view($postId = null) {
+        session_start();
+        if ($postId == null) {
+            $view = new View("PostForm");
+            $view->generate(array (null));
+        }    
+        else {
+            $post = $this->post->getPost($postId);
+            $view = new View("PostForm");
+            $view->generate(array('post' => $post));
+        }
+    }
+
+    //ajoute un billet
+    public function createPost($title, $content, $author) {
+        $this->post->insertPost($title, $content, $author); 
+        $page = 1;
+        $this->blog($page);
+    }
+
+    //modifie un billet
+    public function editPost($postId, $title, $content, $author) {
+        session_start();
+        $this->post->editPost($postId, $title, $content, $author);
+        $page=1;
+        $this->post($postId, $page);
+    }
 }

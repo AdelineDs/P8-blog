@@ -34,11 +34,25 @@ class Post extends Model {
         }
     }
     
+    //return number of pages posts
     public function getNbPages(){
         $sql = 'SELECT COUNT(*) AS nbPosts FROM posts';
         $data = $this->executeQuery($sql);
         $nbPosts = $data->fetchColumn();
         $nbPages = ceil($nbPosts/5);
         return $nbPages;
+    }
+    
+    // fonction qui realise l'insertion dans la base de données
+    public function insertPost($title, $content, $author){
+        $sql = 'INSERT INTO posts(title, content, author, publication_date) VALUES(?,?, ?, NOW())';
+        $this->executeQuery($sql, array($title, $content, $author));
+    }
+
+
+    // fonction qui realise la modification dans la base de données
+    public function editPost($postId, $title, $content, $author){
+        $sql = 'UPDATE posts SET title =?, content=?, author=? WHERE id=?';
+        $result = $this->executeQuery($sql, array($title, $content, $author, $postId));
     }
 }

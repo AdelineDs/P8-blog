@@ -84,6 +84,48 @@ class Router {
                 session_destroy();
                 $this->ctrlAdmin->view();
               }
+              elseif ($_GET['action'] == 'postForm') {
+                   $this->ctrlPost->view();
+              }
+              elseif ($_GET['action'] == 'createPost') {
+                  if(!empty($_POST['title']) && !empty($_POST['content']) && !empty($_POST['author'])){
+                      $title = $this->getParam($_POST, 'title');
+                      $content = $this->getParam($_POST, 'content');
+                      $author = $this->getParam($_POST, 'author');
+                      $this->ctrlPost->createPost($title, $content, $author);                
+                  }
+                else{
+                    throw new Exception("Tous les champs ne sont pas remplis !");
+                }
+              }
+               elseif ($_GET['action'] == 'editPost') {
+                    $postId = intval($this->getParam($_GET, 'id'));
+                    if ($postId != 0) {
+                        $this->ctrlPost->view($postId);
+                  }
+                   else {
+                     throw new Exception("Identifiant de billet non valide");
+                   }
+                }
+                elseif ($_GET['action'] == 'recordPost') {
+                    $postid = intval($this->getParam($_GET, 'id'));
+                    if ($postid != 0) {
+                        if(!empty($_POST['title']) &&  !empty($_POST['content']) && !empty($_POST['author'])){
+                            $title = $this->getParam($_POST, 'title');
+                            $contenu = $this->getParam($_POST, 'content');
+                            $auteur = $this->getParam($_POST, 'author');
+                            $this->ctrlPost->editPost($postid, $title, $contenu, $auteur);                
+
+                        }
+                        else{
+                        throw new Exception("Tous les champs ne sont pas remplis !");
+                        }
+                    }
+
+                    else {
+                    throw new Exception("Identifiant de billet non valide");
+                    }
+                }
                 else{
                     throw new Exception("Action non valide");
                 }
