@@ -69,6 +69,21 @@ class Router {
                 elseif ($_GET['action'] == 'admin') {
                     $this->ctrlAdmin->view();
                }
+               elseif ($_GET['action'] == 'manageAdmin') {
+                   if (isset($_POST['login']) && $_POST['pass']) {
+                       if (!empty($_POST['login']) && !empty($_POST['pass'])) {
+                          $this->ctrlAdmin->manageAdmin($_POST['login'], $_POST['pass']);
+                      }
+                      else{
+                        throw new Exception("Tous les champs ne sont pas remplis !");
+                      }
+                  }
+               }
+               elseif ($_GET['action'] == 'disconnect'){
+                session_start();
+                session_destroy();
+                $this->ctrlAdmin->view();
+              }
                 else{
                     throw new Exception("Action non valide");
                 }

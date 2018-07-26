@@ -18,7 +18,7 @@ class ControlerPost {
   public function post($postId, $page) {
     $post = $this->post->getPost($postId);
     $comments = $this->comment->getComments($postId, $page);
-    $nbPages = $this->comment->getNbPages();
+    $nbPages = $this->comment->getNbPages($postId);
     $view = new View("Post");
     $view->generate(array('post' => $post, 'comments' => $comments, 'nbPages' => $nbPages));
   }

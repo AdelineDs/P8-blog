@@ -14,9 +14,9 @@ class Comment extends Model {
         return $comments;
     }
     
-    public function getNbPages(){
-        $sql = 'SELECT COUNT(*) AS nbComments FROM comments';
-        $data = $this->executeQuery($sql);
+    public function getNbPages($postId){
+        $sql = 'SELECT COUNT(*) AS nbComments FROM comments WHERE post_id= ?';
+        $data = $this->executeQuery($sql, array($postId));
         $nbComments = $data->fetchColumn();
         $nbPages = ceil($nbComments/7);
         return $nbPages;

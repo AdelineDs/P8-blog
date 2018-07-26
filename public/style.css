@@ -45,3 +45,8 @@ form{
 .pages{
     text-align: center;
 }
+
+.warning {
+    color: red;
+    font-weight: bold;
+}
