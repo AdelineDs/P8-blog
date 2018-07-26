@@ -9,7 +9,6 @@ class Post extends Model {
         $start = ($page-1)*5;
         $sql = 'SELECT id, title, content, author, DATE_FORMAT(publication_date, \'%d/%m/%Y à %Hh%imin%ss\')'
                 . ' AS publication_date_fr FROM posts ORDER BY publication_date DESC LIMIT 5 OFFSET '.$start.'';
-//        $sql->bindValue('start', $start, PDO::PARAM_INT);
         $posts = $this->executeQuery($sql, array($start));
         return $posts;
     }

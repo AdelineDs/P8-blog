@@ -26,8 +26,14 @@ class Router {
             if(isset($_GET['action'])){
                 if($_GET['action'] == 'post'){
                     $postId = intval($this->getParam($_GET, 'id'));
+                    $page = intval($this->getParam($_GET, 'page'));
                     if($postId != 0){
-                        $this->ctrlPost->post($postId);
+                        if($page > 0){
+                            $this->ctrlPost->post($postId, $page);
+                        }
+                        else{
+                            throw new Exception("Numéro de page non valide");
+                        }
                     }
                     else{
                         throw new Exception("Identifiant de billet non valide");
