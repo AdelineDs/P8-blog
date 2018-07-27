@@ -85,4 +85,10 @@ class ControlerPost {
         $page = 1;
         $this->blog($page);
     }
+    
+    public function reportComment($comId, $postId, $page) {
+        $this->comment->reportCom($comId);
+        $this->post($postId, $page);
+        
+    }
 }

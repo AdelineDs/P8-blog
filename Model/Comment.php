@@ -7,7 +7,7 @@ class Comment extends Model {
 // return all comment of a post
     public function getComments($postId, $page) {
         $start = ($page-1)*7;
-        $sql = 'SELECT id, post_id, author, comment, DATE_FORMAT'
+        $sql = 'SELECT id, post_id, author, comment, reported, DATE_FORMAT'
               . '(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM '
               . 'comments WHERE post_id= ? ORDER BY comment_date DESC LIMIT 7 OFFSET '.$start.'';
         $comments = $this->executeQuery($sql,array($postId));
@@ -35,6 +35,10 @@ class Comment extends Model {
         $this->executeQuery($sql, array($postId));
     }
     
-    
+    //realise la modification de la base de données
+    public function reportCom($idCom){
+        $sql = 'UPDATE comments SET reported=1  WHERE id=?';
+        $this->executeQuery($sql, array($idCom));
+    }
 }
 

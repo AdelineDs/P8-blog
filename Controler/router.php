@@ -135,9 +135,15 @@ class Router {
                     }
                 }
                 elseif ($_GET['action'] == 'confirm') {
-                    $postId = $this->getParam($_POST, 'postId');
+                    $postId = intval($this->getParam($_POST, 'postId'));
                     $this->ctrlPost->confirm($postId);
                 }
+                elseif ($_GET['action'] == 'report') {
+                    $comId = intval($this->getParam($_POST, 'comId'));
+                    $postId = intval($this->getParam($_POST, 'postId'));
+                    $page = intval($this->getParam($_POST, 'page'));
+                    $this->ctrlPost->reportComment($comId, $postId, $page);
+            }
                 else{
                     throw new Exception("Action non valide");
                 }

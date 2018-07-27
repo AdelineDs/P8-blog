@@ -17,10 +17,24 @@
                 <div>
                     <h3><?= strip_tags($com['author']); ?></h3>
                     <h5> Le <em><?= $com['comment_date_fr']; ?></em></h5>
-                    <p>
-                        <?= nl2br(strip_tags($com['comment'])); ?>
-                    </p>
+                    <?php if($com['reported'] == 0){ ?>
+                        <p>
+                            <?= nl2br(strip_tags($com['comment'])); ?>
+                        </p>
+                    <?php } else { ?>
+                        <p>
+                            Ce commentaire à été signalé par un internaute et est en attente de modération                    
+                       </p>
+                       <?php } ?>
                 </div>
+                <?php if($com['reported'] == 0){ ?>
+                       <form method="post" action="index.php?action=report">
+                           <input type="hidden" name="comId" value="<?= $com['id'] ?>" />
+                           <input type="hidden" name="postId" value="<?= $post['id'] ?>" />
+                           <input type="hidden" name="page" value="<?= $_GET['page'] ?>" />
+                           <input type="submit" value="Signaler le commentaire" />
+                       </form> 
+                <?php } ?>
             </div>
              <?php endforeach;?>
         </div>
@@ -28,23 +42,24 @@
 
 <div class="col-xs-offset-1 col-xs-10 pages">
 <?php
-if ($_GET['page'] > 1):
+if (isset($_GET['page']) && $_GET['page'] > 1):
     ?><a href="<?="?action=post&AMP;id=" . $post['id'] . "&page=" .($_GET['page'] - 1)?>">Page précédente</a> — <?php
 endif;
 
+if($nbPages > 1 ){
 /* On va effectuer une boucle autant de fois que l'on a de pages */
 for ($i = 1; $i <= $nbPages; $i++):
     ?><a href="<?="?action=post&AMP;id=" . $post['id'] . "&page=" . $i ?>"><?= $i; ?></a> <?php
 endfor;
-
+}
 /* Avec le nombre total de pages, on peut aussi masquer le lien
  * vers la page suivante quand on est sur la dernière */
-if ($_GET['page'] < $nbPages):
+if (isset($_GET['page']) && $_GET['page'] < $nbPages):
     ?>— <a href="<?="?action=post&AMP;id=" . $post['id'] . "&AMP;page=" . ($_GET['page'] + 1) ?>">Page suivante</a><?php
 endif;
 ?>
 
-    <form method="post" action="index.php?action=comment&AMP;page=1">
+<form method="post" action="index.php?action=comment&AMP;page=1">
     <input id="author" name="author" type="text" placeholder="Votre pseudo" required /><br />
     <textarea id="txtComment" name="comment" rows="4"  placeholder="Votre commentaire" required></textarea><br />
     <input type="hidden" name="id" value="<?= $post['id'] ?>" />
