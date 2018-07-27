@@ -10,7 +10,7 @@
 <?php foreach ($posts as $post): ?>
 <article class="col-xs-offset-1 col-xs-10">
     <div>
-        <a href="<?="index.php?action=post&id=" . $post['id'] . "&page=1" ?>">
+        <a href="<?="index.php?action=post&AMP;id=" . $post['id'] . "&AMP;page=1" ?>">
             <h1 class="titlePost"><?= $post['title'] ?></h1>
         </a>
         <time><?= $post['publication_date_fr'] ?></time>

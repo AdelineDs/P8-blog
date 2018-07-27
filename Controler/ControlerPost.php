@@ -37,7 +37,8 @@ class ControlerPost {
     // save comment
     $this->comment->addComment($postId, $author, $comment); 
     // refresh post
-    $this->post($postId);
+    $page = 1;
+    $this->post($postId, $page);
   }
   
     //affiche le formulaire de rédaction/modification d'un billet
@@ -67,5 +68,21 @@ class ControlerPost {
         $this->post->editPost($postId, $title, $content, $author);
         $page=1;
         $this->post($postId, $page);
+    }
+    
+    //affiche la page de confirmation de suppression d'un billet
+    public function ViewConfirmation($postId) {
+        session_start();
+        $post = $this->post->getPost($postId);
+        $view = new View("Confirmation");
+        $view->generate(array ('post' => $post));
+    }
+    
+     //confirme la suppression d'un billet
+    public function confirm($postId) {
+        $this->comment->deleteCom($postId);    
+        $this->post->deletePost($postId); 
+        $page = 1;
+        $this->blog($page);
     }
 }

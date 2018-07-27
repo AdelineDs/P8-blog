@@ -121,10 +121,22 @@ class Router {
                         throw new Exception("Tous les champs ne sont pas remplis !");
                         }
                     }
-
                     else {
                     throw new Exception("Identifiant de billet non valide");
                     }
+                }
+                elseif ($_GET['action'] == 'deletePost') {
+                    $postId = intval($this->getParam($_GET, 'id'));
+                    if ($postId != 0) {
+                        $this->ctrlPost->ViewConfirmation($postId);
+                    }
+                    else {
+                        throw new Exception("Identifiant de billet non valide");
+                    }
+                }
+                elseif ($_GET['action'] == 'confirm') {
+                    $postId = $this->getParam($_POST, 'postId');
+                    $this->ctrlPost->confirm($postId);
                 }
                 else{
                     throw new Exception("Action non valide");

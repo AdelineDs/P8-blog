@@ -55,4 +55,10 @@ class Post extends Model {
         $sql = 'UPDATE posts SET title =?, content=?, author=? WHERE id=?';
         $result = $this->executeQuery($sql, array($title, $content, $author, $postId));
     }
+    
+    //fonction qui realise la suppression dans la base de données
+    public function deletePost($postId) {
+        $sql = 'DELETE FROM posts WHERE id= ?';
+        $this->executeQuery($sql, array($postId));
+    }
 }

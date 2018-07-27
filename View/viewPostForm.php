@@ -16,7 +16,7 @@ if (isset($_SESSION['id']) AND isset($_SESSION['login']))
             ?>
     <p><strong>Veuillez renseigner tout les champs, merci !</strong></p>
         <?php                            endif;?>
-    <form <?php if(isset($post['id']) AND $post['id']) {?> action="index.php?action=recordPost&amp;id=<?= $post['id'] ?>&page=1"<?php } else {;?> action="index.php?action=createPost&page=1" <?php }?>method="post" class="col-xs-offset-1 col-xs-10 col-sm-offset-2 col-sm-8">
+    <form <?php if(isset($post['id']) AND $post['id']) {?> action="index.php?action=recordPost&amp;id=<?= $post['id'] ?>&AMP;age=1"<?php } else {;?> action="index.php?action=createPost&AMP;page=1" <?php }?>method="post" class="col-xs-offset-1 col-xs-10 col-sm-offset-2 col-sm-8">
         <div class="form-group">
             <label for="title">Titre : 
                     <input name="title" id="title" type=text <?php if(isset($post['id']) AND $post['id']) :?> value="<?= strip_tags($post['title']);?>"<?php endif;?> required="">

@@ -8,7 +8,7 @@
                 <br/>
                 <a href="index.php?action=postForm">Ecrire un nouveau billet</a>
                 <br/>
-                <a href="index.php?action=blog">Gestion des billets existants</a>
+                <a href="index.php?action=blog&AMP;page=1">Gestion des billets existants</a>
                 <br/>
                 <a href="index.php?action=blog">Gestion des commentaires</a>
                 <br/>

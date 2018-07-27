@@ -17,7 +17,7 @@
                 <div class="col-xs-12 menu">
                     <ul>
                         <li><a href="index.php">Accueil</a></li>
-                        <li><a href="index.php?action=blog&page=1">Blog</a></li>
+                        <li><a href="index.php?action=blog&AMP;page=1">Blog</a></li>
                         <li><a href="index.php?action=contact">A Propos</a></li>
                     </ul>
                 </div>

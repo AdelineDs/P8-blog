@@ -27,7 +27,13 @@ class Comment extends Model {
         $sql = 'INSERT INTO comments(post_id, author, comment, comment_date) VALUES(?, ?, ?, ?)';
         $date = date(DATE_W3C);
         $this->executeQuery($sql, array($postId, $author, $comment, $date));
-}
+    }
+
+    //realise la suppression de tout les commentaires associés à un billet dans la base de données
+    public function deleteCom($postId) {
+        $sql = 'DELETE FROM comments WHERE post_id= ?';
+        $this->executeQuery($sql, array($postId));
+    }
     
     
 }
