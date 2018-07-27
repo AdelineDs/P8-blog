@@ -15,6 +15,13 @@
             foreach($comments as $com): ?>
             <div class="comment">
                 <div>
+                    <?php
+                        if (isset($_SESSION['id']) && isset($_SESSION['login']) && $com['reported'] != 0 )
+                        { ?>
+                            <p class="warning">Commentaire à modérer</p>
+                        <?php
+                         }
+                         ?>
                     <h3><?= strip_tags($com['author']); ?></h3>
                     <h5> Le <em><?= $com['comment_date_fr']; ?></em></h5>
                     <?php if($com['reported'] == 0){ ?>
@@ -23,9 +30,18 @@
                         </p>
                     <?php } else { ?>
                         <p>
-                            Ce commentaire à été signalé par un internaute et est en attente de modération                    
+                            Ce commentaire a été signalé par un internaute et est en attente de modération. Merci de votre compréhension.                   
                        </p>
                        <?php } ?>
+                       <?php
+                        if (isset($_SESSION['id']) && isset($_SESSION['login']) )
+                        { ?>
+                            <p class="gestionCom">
+                                <span><a href="<?= "index.php?action=moderateCom&id=" . $com['id'] ?>">Modérer le commentaire</a></span> /
+                                <span><a href="<?= "index.php?action=deleteCom&id=" . $com['id'] ?>">Supprimer le commentaire</a></span>
+                            </p> 
+                        <?php
+                         } ?>
                 </div>
                 <?php if($com['reported'] == 0){ ?>
                        <form method="post" action="index.php?action=report">

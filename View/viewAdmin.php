@@ -6,6 +6,11 @@
             <div class="col-md-offset-2 col-md-8 col-xs-offset-1 col-xs-10 accueilConnectAdmin"> 
                 <h1>Bonjour <?=  $_SESSION['login'] ?> ! Que voulez vous faire ?</h1>         
                 <br/>
+                <?php foreach ($reportedCom as $com): ?>
+                <div>
+                    Le commentaire de "<?= $com['author']?>" a été signaler sur le billet : <?= $com['title']?>
+                </div>
+                <?php endforeach;?>
                 <a href="index.php?action=postForm">Ecrire un nouveau billet</a>
                 <br/>
                 <a href="index.php?action=blog&AMP;page=1">Gestion des billets existants</a>

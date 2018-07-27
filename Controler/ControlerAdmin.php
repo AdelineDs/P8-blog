@@ -2,6 +2,7 @@
 
 require_once 'View/View.php';
 require_once 'Model/Admin.php';
+require_once 'Model/Comment.php';
 
 class ControlerAdmin {
 
@@ -10,13 +11,15 @@ class ControlerAdmin {
     
     public function __construct() {
         $this->admin = new Admin();
+        $this->comment = new Comment();
   }
     
   //display admin page
     public function view() {
       session_start();
-      $view = new View("Admin");
-      $view->generate(array (null));
+      $reportedCom = $this->comment->getReportedCom();
+         $view = new View("Admin");
+         $view->generate(array('reportedCom' => $reportedCom));
   }
 
   //admin connection 
@@ -33,8 +36,10 @@ class ControlerAdmin {
          session_start();
          $_SESSION['id'] = $admin['id'];
          $_SESSION['login'] = $login;
+         $reportedCom = $this->comment->getReportedCom();
+         var_dump($reportedCom);
          $view = new View("Admin");
-         $view->generate(array(null));
+         $view->generate(array('reportedCom' => $reportedCom));
       }
   }
 }
