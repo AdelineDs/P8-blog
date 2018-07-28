@@ -46,7 +46,7 @@
               'searchreplace visualblocks code fullscreen',
               'insertdatetime media table contextmenu paste code wordcount'
               ],
-              toolbar: 'insert | undo redo |  formatselect | bold italic backcolor underline strikethrough forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent  | help',
+              toolbar: 'insert | undo redo |  formatselect | fontsizeselect | bold italic backcolor underline strikethrough forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent  | help',
               });
          </script>
     </body>
