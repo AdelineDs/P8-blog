@@ -37,7 +37,7 @@
                         if (isset($_SESSION['id']) && isset($_SESSION['login']) )
                         { ?>
                             <p class="gestionCom">
-                                <span><a href="<?= "index.php?action=moderateCom&id=" . $com['id'] ?>">Modérer le commentaire</a></span> /
+                                <span><a href="<?= "index.php?action=moderateCom&AMP;id=" . $com['id'] ?>">Modérer le commentaire</a></span> /
                                 <span><a href="<?= "index.php?action=deleteCom&id=" . $com['id'] ?>">Supprimer le commentaire</a></span>
                             </p> 
                         <?php

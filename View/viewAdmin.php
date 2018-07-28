@@ -7,15 +7,13 @@
                 <h1>Bonjour <?=  $_SESSION['login'] ?> ! Que voulez vous faire ?</h1>         
                 <br/>
                 <?php foreach ($reportedCom as $com): ?>
-                <div>
+                <div class="warning">
                     Le commentaire de "<?= $com['author']?>" a été signaler sur le billet : <?= $com['title']?>
                 </div>
                 <?php endforeach;?>
                 <a href="index.php?action=postForm">Ecrire un nouveau billet</a>
                 <br/>
-                <a href="index.php?action=blog&AMP;page=1">Gestion des billets existants</a>
-                <br/>
-                <a href="index.php?action=blog">Gestion des commentaires</a>
+                <a href="index.php?action=blog&AMP;page=1">Gestion des billets ou des commentaires</a>
                 <br/>
                 <form action="index.php?action=disconnect" method="post">
                     <input type="submit" value="Déconnexion" name="Deconnexion" class="disconnectAdmin"/>

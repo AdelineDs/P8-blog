@@ -18,16 +18,17 @@ class ControlerComment {
     public function view($idCom) {
       session_start();
       $comment = $this->comment->getComment($idCom);
-      $wiew = new View("ComForm");
-      $wiew->generate(array('comment' => $comment)); 
+      $view = new View("ComForm");
+      $view->generate(array('comment' => $comment)); 
   }
   
   //Confirme la modification d'un commenatire
     public function moderate($idCom, $author, $comment) {
        session_start();
-      $this->comment->modifyComment($idCom, $author, $comment); 
+      $this->comment->modifyComment($idCom, $author, $comment);
+      $reportedCom = $this->comment->getReportedCom();
       $view = new View("Admin");
-      $view->generate(array(NULL));
+      $view->generate(array('reportedCom' => $reportedCom));
   }
   
   //affiche la page de confirmation de suppression d'un commentaire
@@ -41,9 +42,10 @@ class ControlerComment {
   //confirma le suppression d'un commentaire
     public function confirm($idCom) {
        session_start();
-      $this->comment->confirm($idCom); 
-      $view = new View("Admin");
-      $view->generate(array(NULL));
+       $this->comment->confirm($idCom); 
+       $reportedCom = $this->comment->getReportedCom();
+       $view = new View("Admin");
+       $view->generate(array('reportedCom' => $reportedCom));
   }
 
 }

@@ -86,9 +86,9 @@ class ControlerPost {
         $this->blog($page);
     }
     
+    //update la bdd pour placé le commmentaire comme signalé 
     public function reportComment($comId, $postId, $page) {
         $this->comment->reportCom($comId);
-        $this->post($postId, $page);
-        
+        $this->post($postId, $page); 
     }
 }

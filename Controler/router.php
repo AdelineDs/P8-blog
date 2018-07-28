@@ -119,7 +119,7 @@ class Router {
                      throw new Exception("Identifiant de billet non valide");
                    }
                 }
-                //enregistrement des modificatios d'un billet existant 
+                //enregistrement des modifications d'un billet existant 
                 elseif ($_GET['action'] == 'recordPost') {
                     $postId = intval($this->getParam($_GET, 'id'));
                     if ($postId != 0) {
@@ -179,9 +179,8 @@ class Router {
             elseif ($_GET['action'] == 'moderateCom') {
               $idCom = intval($this->getParam($_GET, 'id'));
               if ($idCom != 0) {
-              $this->ctrlComment->view($idCom);
+                  $this->ctrlComment->view($idCom); 
             }
-            
             else {
               throw new Exception("Identifiant de commentaire non valide");
             }

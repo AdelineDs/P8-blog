@@ -37,7 +37,6 @@ class ControlerAdmin {
          $_SESSION['id'] = $admin['id'];
          $_SESSION['login'] = $login;
          $reportedCom = $this->comment->getReportedCom();
-         var_dump($reportedCom);
          $view = new View("Admin");
          $view->generate(array('reportedCom' => $reportedCom));
       }
