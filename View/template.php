@@ -33,6 +33,21 @@
             </footer>
         </div>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script> 
+        <script type="text/javascript" src="public/js/tinymce/tinymce.min.js"></script>
+         <script type="text/javascript">
+            tinymce.init({
+              selector: '#content',
+              language : "fr_FR",
+              height : 300,
+              menubar: false,
+              plugins: [
+              'advlist autolink lists link image charmap print preview anchor textcolor',
+              'searchreplace visualblocks code fullscreen',
+              'insertdatetime media table contextmenu paste code wordcount'
+              ],
+              toolbar: 'insert | undo redo |  formatselect | bold italic backcolor underline strikethrough forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent  | help',
+              });
+         </script>
     </body>
 </html>

@@ -1,4 +1,4 @@
-<?php $this->titre = "Ecrire un nouveau billet";
+<?php $this->title = "Ecrire un nouveau billet";
 if (isset($_SESSION['id']) AND isset($_SESSION['login']))
     {
 ?>
@@ -9,7 +9,7 @@ if (isset($_SESSION['id']) AND isset($_SESSION['login']))
 <?php
     }
 ?>
-<div class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8 col-xs-offset-1 col-xs-10 newArticle">
+<div class="col-lg-offset-1 col-lg-10 col-md-offset-2 col-md-8 col-xs-offset-1 col-xs-10 newArticle">
     <h2>Ecrire un nouveau billet</h2>
         <?php
         if(isset($insert_erreur) AND $insert_erreur) :
