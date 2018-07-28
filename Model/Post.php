@@ -23,7 +23,6 @@ class Post extends Model {
 
     // return one post
     public function getPost($postId) {
-        session_start();
         $sql = 'SELECT id, title, content, author, DATE_FORMAT(publication_date, \'%d/%m/%Y à %Hh%imin%ss\')'
                 . ' AS publication_date_fr FROM posts WHERE id = ?';
          $post = $this->executeQuery($sql, array($postId));

@@ -1,11 +1,12 @@
 <?php
 
-require_once 'Controler/ControlerHome.php';
-require_once 'Controler/ControlerPost.php';
-require_once 'Controler/ControlerContact.php';
-require_once 'Controler/ControlerAdmin.php';
-require_once 'Controler/ControlerComment.php';
 require_once 'View/View.php';
+
+function loadClass($class) {
+      require $class. '.php';
+  }
+  
+spl_autoload_register('loadClass');
 
 class Router {
     
