@@ -64,7 +64,7 @@ class Comment extends Model {
 
     //realise la modification de la base de données après la modération d'un commentaire
     public function modifyComment($idCom, $author, $comment){
-        $sql = 'UPDATE comments SET author= ?, comment=?, reported=0 WHERE id=?';
+        $sql = 'UPDATE comments SET author= ?, comment=?, reported=2 WHERE id=?';
         $this->executeQuery($sql, array($author, $comment, $idCom));
     }
 

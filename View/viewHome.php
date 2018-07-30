@@ -15,7 +15,17 @@
         </a>
         <time><?= $post['publication_date_fr'] ?></time>
     </div>
-    <p><?= $post['content'] ?></p>
+    <p><?php if(strlen($post['content']) > 450){
+            $space = strpos($post['content'], ' ', 450);
+            $post['content'] = substr($post['content'], 0, $space);
+            echo strip_tags($post['content']) . ' ...';?>
+        <a href="<?="index.php?action=post&AMP;id=" . $post['id'] . "&page=1" ?>">
+            <p class="titlePost">Lire la suite</p>
+        </a>
+        <?php } else {
+            echo strip_tags($post['content']);
+        }    
+ ?></p>
 </article>
 <hr />
 <?php endforeach;?>

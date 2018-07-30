@@ -16,7 +16,7 @@
             <div class="comment">
                 <div>
                     <?php
-                        if (isset($_SESSION['id']) && isset($_SESSION['login']) && $com['reported'] != 0 )
+                        if (isset($_SESSION['id']) && isset($_SESSION['login']) && $com['reported'] == 1 )
                         { ?>
                             <p class="warning">Commentaire à modérer</p>
                         <?php
@@ -24,9 +24,12 @@
                          ?>
                     <h3><?= strip_tags($com['author']); ?></h3>
                     <h5> Le <em><?= $com['comment_date_fr']; ?></em></h5>
-                    <?php if($com['reported'] == 0){ ?>
+                    <?php if($com['reported'] == 0 || $com['reported'] == 2 ){ ?>
                         <p>
                             <?= nl2br(strip_tags($com['comment'])); ?>
+                            <?php if( $com['reported'] == 2 ){ ?>
+                                <p class="moderate">Ce commentaire a été modéré par l'administrateur du site.</p>
+                            <?php } ?>
                         </p>
                     <?php } else { ?>
                         <p>

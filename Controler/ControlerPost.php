@@ -16,6 +16,7 @@ class ControlerPost {
 
   // display post content
   public function post($postId, $page) {
+    session_start();
     $post = $this->post->getPost($postId);
     $comments = $this->comment->getComments($postId, $page);
     $nbPages = $this->comment->getNbPages($postId);

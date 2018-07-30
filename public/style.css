@@ -50,3 +50,8 @@ form{
     color: red;
     font-weight: bold;
 }
+
+.moderate{
+    font-style: italic;
+    color: gray;
+}

@@ -13,7 +13,7 @@ class Post extends Model {
         return $posts;
     }
     
-        // Return latest posts order by decreasing id
+        // Return the 2 latest posts order by decreasing publication date
     public function getLastPosts(){
         $sql = 'SELECT id, title, content, author, DATE_FORMAT(publication_date, \'%d/%m/%Y à %Hh%imin%ss\')'
                 . ' AS publication_date_fr FROM posts ORDER BY publication_date DESC LIMIT 0,2';

@@ -24,7 +24,7 @@ class ControlerComment {
   
   //Confirme la modification d'un commenatire
     public function moderate($idCom, $author, $comment) {
-       session_start();
+      session_start();
       $this->comment->modifyComment($idCom, $author, $comment);
       $reportedCom = $this->comment->getReportedCom();
       $view = new View("Admin");
@@ -39,7 +39,7 @@ class ControlerComment {
       $view->generate(array ('comment' => $comment));
   }
   
-  //confirma le suppression d'un commentaire
+  //confirme la suppression d'un commentaire
     public function confirm($idCom) {
        session_start();
        $this->comment->confirm($idCom); 

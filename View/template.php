@@ -19,6 +19,13 @@
                         <li><a href="index.php">Accueil</a></li>
                         <li><a href="index.php?action=blog&AMP;page=1">Blog</a></li>
                         <li><a href="index.php?action=contact">A Propos</a></li>
+                        <?php
+                             if (isset($_SESSION['id']) AND isset($_SESSION['login']))
+                            { ?>
+                            <li><a href="index.php?action=admin">Administration</a></li>
+                            <?php
+                             }
+                            ?>
                     </ul>
                 </div>
             </header>
