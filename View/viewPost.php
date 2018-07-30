@@ -1,20 +1,37 @@
 <?php $this->title = strip_tags($post['title']); ?>
 
     <div class="row">
-        <div class="col-md-offset-2 col-md-8 col-xs-offset-1 col-xs-10 articleBlog">
-            <div>
-                <h2><?= strip_tags($post['title']); ?></h2>
-                <p class="articleContent">
+        <div class="col-md-offset-2 col-md-8 col-xs-offset-1 col-xs-10 onePost">
+            <h2 class="onePostTitle"><?= strip_tags($post['title']); ?></h2>
+                <p class="postContent">
                     <?= $post['content']; ?>
                 </p>
-                <h5> Le <em><?= $post['publication_date_fr']; ?></em>  Par <strong><?= strip_tags($post['author']); ?></strong></h5>
-            </div>
+                <h5 class="onePostDate"> Le <em><?= $post['publication_date_fr']; ?></em>  Par <strong><?= strip_tags($post['author']); ?></strong></h5>
         </div>
-        <div class="col-md-offset-2 col-md-8 col-xs-offset-1 col-xs-10  listeCom">
+    </div> 
+<div class="row">
+    <div class="col-md-offset-2 col-md-8 col-xs-offset-1 col-xs-10 commentForm">
+    <h2>Laisser un commentaire :</h2>
+    <form action="index.php?action=commenter" method="post">
+        <input type="hidden" value="<?= $billet['id']?>" name="id_billet"/>
+        <div class="form-group">
+            <label for="auteur">Nom ou pseudo: </label>
+            <input name="auteur" id="auteur" type=text class="form-control" required="">
+        </div>
+        <div class="form-group">
+            <label for="commentaire">Votre commentaire : </label>
+            <textarea name="commentaire" id="commentaire" class="form-control" rows="5" required=""></textarea>
+            <p class="help-block">Vous pouvez agrandir la zone de texte</p>
+        </div>
+        <input type="submit" value="Enregistrer le commentaire" class="submitCom">
+    </form>
+    </div>
+</div>
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8 col-xs-offset-1 col-xs-10  listCom">
             <?php
             foreach($comments as $com): ?>
             <div class="comment">
-                <div>
                     <?php
                         if (isset($_SESSION['id']) && isset($_SESSION['login']) && $com['reported'] == 1 )
                         { ?>
@@ -45,20 +62,18 @@
                             </p> 
                         <?php
                          } ?>
-                </div>
                 <?php if($com['reported'] == 0){ ?>
                        <form method="post" action="index.php?action=report">
                            <input type="hidden" name="comId" value="<?= $com['id'] ?>" />
                            <input type="hidden" name="postId" value="<?= $post['id'] ?>" />
                            <input type="hidden" name="page" value="<?= $_GET['page'] ?>" />
-                           <input type="submit" value="Signaler le commentaire" />
+                           <input type="submit" value="Signaler le commentaire" class="reportButton"/>
                        </form> 
                 <?php } ?>
             </div>
              <?php endforeach;?>
         </div>
-    </div>
-
+ 
 <div class="col-xs-offset-1 col-xs-10 pages">
 <?php
 if (isset($_GET['page']) && $_GET['page'] > 1):
@@ -77,10 +92,5 @@ if (isset($_GET['page']) && $_GET['page'] < $nbPages):
     ?>— <a href="<?="?action=post&AMP;id=" . $post['id'] . "&AMP;page=" . ($_GET['page'] + 1) ?>">Page suivante</a><?php
 endif;
 ?>
-
-<form method="post" action="index.php?action=comment&AMP;page=1">
-    <input id="author" name="author" type="text" placeholder="Votre pseudo" required /><br />
-    <textarea id="txtComment" name="comment" rows="4"  placeholder="Votre commentaire" required></textarea><br />
-    <input type="hidden" name="id" value="<?= $post['id'] ?>" />
-    <input type="submit" value="Commenter" />
-</form>
+     </div>
+ 
