@@ -11,7 +11,7 @@
         <div class="container-fluid">
             <header class="row header">
                 <div class="col-xs-12">
-                    <h1 id="titreBlog">Billet simple pour l'Alaska</h1>
+                    <h1 id="titleBlog">Billet simple pour l'Alaska</h1>
                 </div>
                 <!-- nav menu -->
                 <div class="col-xs-12 menu">
@@ -29,7 +29,7 @@
                     </ul>
                 </div>
             </header>
-            <div id="contenu" class="row">
+            <div class="row content">
                 <?= $content ?>
             </div> <!-- #contenu -->
             <footer class="row footer">

@@ -1,18 +1,47 @@
+/*--General ---*/
 body{
     margin: 0;
     padding: 0;
     font-size: 16px;
+    background: slategrey;
+    color: white;
 }
 
+
+/*--Header--*/
 .header {
     text-align: center;
+    background: url(img/alaska.jpg) scroll no-repeat;
+    padding: 150px 0;
+}
+#titleBlog{
+    color: white;
+    text-shadow: 2px 2px 2px black;
+    font-weight: bold;
 }
 
-.footer{
-    text-align: center;
-    margin-top: 20px;
+/*--Navigation Menu--*/
+.menu ul {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+.menu li {
+    list-style: none;
+    margin: 20px 10px 0 10px;
+}
+.menu a{
+    color: white;
+    font-size: 2rem;
+    text-shadow : 1px 1px 1px black;
+}
+.menu a:hover{
+    text-decoration: underline;
 }
 
+
+/*------ Content ------*/
 .comment {
     border: solid 1px;
     padding: 0 10px;
@@ -22,25 +51,6 @@ form{
     text-align: center;
 }
 
-.menu ul {
-    display: flex;
-    justify-content: center;
-    margin: 0;
-    padding: 0;
-}
-
-.menu li {
-    list-style: none;
-    margin: 0 10px;
-}
-
-.menu a{
-    color: black;
-}
-
-.menu a:hover{
-    text-decoration: underline;
-}
 
 .pages{
     text-align: center;
@@ -54,4 +64,25 @@ form{
 .moderate{
     font-style: italic;
     color: gray;
+}
+
+
+
+/*--Footer--*/
+.footer{
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+/*Media Queries*/
+
+@media all and (max-width: 1024px){
+    
+}
+
+@media all and (max-width: 768px){
+    .menu ul{
+        display: block;
+    }
 }
