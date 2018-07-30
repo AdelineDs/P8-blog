@@ -1,7 +1,7 @@
 <?php $this->title = 'Billet simple pour l\'Alaska - Jean Forteroche'; ?>
 
 <?php foreach ($posts as $post): ?>
-<article class="col-xs-offset-1 col-xs-10">
+<article class="col-xs-offset-1 col-xs-10 post">
     <div>
         <a href="<?="index.php?action=post&AMP;id=" . $post['id'] . "&page=1" ?>">
             <h1 class="titlePost"><?= strip_tags($post['title']) ?></h1>

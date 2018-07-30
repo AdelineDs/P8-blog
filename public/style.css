@@ -42,6 +42,72 @@ body{
 
 
 /*------ Content ------*/
+/*--Home--*/
+.presentation{
+    text-align: center;
+    font-size: 2rem;
+    padding: 20px 0 40px 0;
+}
+.separation {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 40px;
+}
+.separation:before {
+    content: "";
+    height: 1px;
+    background: white;
+    position: absolute;
+    top: calc(50% - 1px);
+    width: 240px;
+    left: calc(50% - 120px);
+}
+.circle {
+    background: #72a6e2;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: solid #708090 5px;
+    position: relative;
+}
+
+.titlePost {
+    color: #4d7dc5;
+    background: white;
+    padding: 4px;
+}
+
+.datePost {
+    font-style: italic;
+    color: silver;
+}
+
+.textPost {
+    border-bottom: solid 1px;
+}
+
+.post {
+    margin-bottom: 5rem;
+}
+
+.linkPost {
+    color: silver;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.post a:hover {
+    text-shadow : 1px 1px 1px black;
+    text-decoration: none;
+}
+
+
+
 .comment {
     border: solid 1px;
     padding: 0 10px;
@@ -71,7 +137,16 @@ form{
 /*--Footer--*/
 .footer{
     text-align: center;
-    margin-top: 20px;
+    margin-top: 50px;
+    background: #4d7dc5;
+    padding: 20px;
+}
+.textFooter {
+    display: flex;
+    justify-content: space-around;
+}
+.adminLink, .adminLink:hover {
+    color: white;
 }
 
 

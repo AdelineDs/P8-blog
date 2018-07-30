@@ -33,9 +33,9 @@
                 <?= $content ?>
             </div> <!-- #contenu -->
             <footer class="row footer">
-                <div class="col-xs-12">
+                <div class="col-xs-12 textFooter">
                     <p>Blog réalisé avec PHP, HTML5 et CSS.</p>
-                    <a href="index.php?action=admin">Administration</a>
+                    <a href="index.php?action=admin" class="adminLink">Administration</a>
                 </div>
             </footer>
         </div>
