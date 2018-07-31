@@ -12,18 +12,18 @@
 <div class="row">
     <div class="col-md-offset-2 col-md-8 col-xs-offset-1 col-xs-10 commentForm">
     <h2>Laisser un commentaire :</h2>
-    <form action="index.php?action=commenter" method="post">
-        <input type="hidden" value="<?= $billet['id']?>" name="id_billet"/>
+    <form action="index.php?action=comment&AMP;page=1" method="post">
+        <input type="hidden" value="<?= $post['id']?>" name="id"/>
         <div class="form-group">
-            <label for="auteur">Nom ou pseudo: </label>
-            <input name="auteur" id="auteur" type=text class="form-control" required="">
+            <label for="author">Nom ou pseudo: </label>
+            <input name="author" id="author" type=text class="form-control" required="">
         </div>
         <div class="form-group">
-            <label for="commentaire">Votre commentaire : </label>
-            <textarea name="commentaire" id="commentaire" class="form-control" rows="5" required=""></textarea>
+            <label for="comment">Votre commentaire : </label>
+            <textarea name="comment" id="comment" class="form-control" rows="5" required=""></textarea>
             <p class="help-block">Vous pouvez agrandir la zone de texte</p>
         </div>
-        <input type="submit" value="Enregistrer le commentaire" class="submitCom">
+        <input type="submit" value="Commenter" class="submitCom">
     </form>
     </div>
 </div>

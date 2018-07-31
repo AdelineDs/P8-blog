@@ -3,18 +3,19 @@
 <?php
             if (isset($_SESSION['id']) AND isset($_SESSION['login']))
             { ?>
-            <div class="col-md-offset-2 col-md-8 col-xs-offset-1 col-xs-10 accueilConnectAdmin"> 
+            <div class="col-md-offset-2 col-md-8 col-xs-offset-1 col-xs-10 homeConnectAdmin"> 
                 <h1>Bonjour <?=  $_SESSION['login'] ?> ! Que voulez vous faire ?</h1>         
-                <br/>
+            </div>
+            <div class="col-md-offset-2 col-md-8 col-xs-offset-1 col-xs-10 resportedComList"> 
                 <?php foreach ($reportedCom as $com): ?>
                 <div class="warning">
                     Le commentaire de "<?= $com['author']?>" a été signaler sur le billet : <?= $com['title']?>
                 </div>
                 <?php endforeach;?>
+            </div>
+            <div class="col-md-offset-2 col-md-8 col-xs-offset-1 col-xs-10 actionLink"> 
                 <a href="index.php?action=postForm">Ecrire un nouveau billet</a>
-                <br/>
                 <a href="index.php?action=blog&AMP;page=1">Gestion des billets ou des commentaires</a>
-                <br/>
                 <form action="index.php?action=disconnect" method="post">
                     <input type="submit" value="Déconnexion" name="Deconnexion" class="disconnectAdmin"/>
                 </form>
@@ -24,7 +25,7 @@
              else {
              ?>
 
-<div class="col-xs-offset-1 col-xs-10"> 
+<div class="col-xs-offset-1 col-xs-10 homeAdmin"> 
     <h2>Bienvenue dans l'interface d'administration</h2>
     <p>Pour vous connecter à votre espace d'administration, veuillez compléter ce formulaire :</p>
     <?php
@@ -32,10 +33,22 @@
                     ?>
         <p class="warning"><?= $insert_erreur ?></p>
                 <?php                            endif;?>
-        <form action="index.php?action=manageAdmin" method="post">
-            <p><label for="login">Entrez votre login : <input name="login" id="login" type=text required=""></label></p>
-            <p><label for="pass">Entrez votre mot de passe : <input name="pass" id="pass" type=password required=""></label></p>
-            <input type="submit" value="Se connecter" class="connectAdmin">
-        </form>
 </div>
-             <?php }
+<div class="row">
+    <div class="col-md-offset-4 col-md-4 col-sm-offset-3 col-sm-6 col-xs-offset-1 col-xs-10 adminForm">
+    <form action="index.php?action=manageAdmin" method="post">
+        <div class="form-group">
+            <label for="login">Entrez votre login : </label>
+            <input name="login" id="login" type=text class="form-control" required="">
+        </div>
+        <div class="form-group">
+            <label for="pass">Entrez votre mot de passe : </label>
+            <input name="pass" id="pass" class="form-control" type=password required=""></input>
+        </div>
+        <input type="submit" value="Se connecter" class="connectAdmin">
+    </form>
+    </div>
+</div>
+             <?php } ?>
+
+             

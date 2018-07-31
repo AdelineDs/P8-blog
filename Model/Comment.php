@@ -6,10 +6,10 @@ class Comment extends Model {
     
 // return all comment of a post
     public function getComments($postId, $page) {
-        $start = ($page-1)*7;
+        $start = ($page-1)*5;
         $sql = 'SELECT id, post_id, author, comment, reported, DATE_FORMAT'
               . '(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM '
-              . 'comments WHERE post_id= ? ORDER BY reported DESC, comment_date DESC LIMIT 7 OFFSET '.$start.'';
+              . 'comments WHERE post_id= ? ORDER BY reported DESC, comment_date DESC LIMIT 5 OFFSET '.$start.'';
         $comments = $this->executeQuery($sql,array($postId));
         return $comments;
     }
@@ -25,7 +25,7 @@ class Comment extends Model {
         $sql = 'SELECT COUNT(*) AS nbComments FROM comments WHERE post_id= ?';
         $data = $this->executeQuery($sql, array($postId));
         $nbComments = $data->fetchColumn();
-        $nbPages = ceil($nbComments/7);
+        $nbPages = ceil($nbComments/5);
         return $nbPages;
     }
     

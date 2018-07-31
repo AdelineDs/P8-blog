@@ -1,4 +1,4 @@
-/*--General ---*/
+/*------General ------*/
 body{
     margin: 0;
     padding: 0;
@@ -6,7 +6,28 @@ body{
     background: slategrey;
     color: white;
 }
-
+/*--Buttons--*/
+.submitCom, 
+.reportButton, 
+.connectAdmin ,
+.disconnectAdmin{
+    background: silver;
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 10px;
+    text-shadow: rgb(93, 93, 93) 1px 0px 0px, rgb(93, 93, 93) 0.533333px 0.833333px 0px, 
+        rgb(93, 93, 93) -0.416667px 0.916667px 0px, rgb(93, 93, 93) -0.983333px 0.133333px 0px, 
+        rgb(93, 93, 93) -0.65px -0.75px 0px, rgb(93, 93, 93) 0.283333px -0.966667px 0px, 
+        rgb(93, 93, 93) 0.966667px -0.283333px 0px;
+}
+.submitCom:hover, 
+.reportButton:hover, 
+.connectAdmin:hover,
+.disconnectAdmin:hover{
+    border: #696969 3px solid;
+    margin: -3px;
+}
 
 /*--Header--*/
 .header {
@@ -38,6 +59,21 @@ body{
 }
 .menu a:hover{
     text-decoration: underline;
+}
+
+/*--Footer--*/
+.footer{
+    text-align: center;
+    margin-top: 50px;
+    background: #4d7dc5;
+    padding: 20px;
+}
+.textFooter {
+    display: flex;
+    justify-content: space-around;
+}
+.adminLink, .adminLink:hover {
+    color: white;
 }
 
 
@@ -130,7 +166,6 @@ body{
     border-bottom: dashed 1px;
 }
 .postContent {
-    border-bottom: dashed 1px;
     padding-bottom: 10px;
 }
 .onePostDate {
@@ -140,6 +175,7 @@ body{
 
 .commentForm {
     padding: 50px 0 50px 0;
+     border-top: dashed 1px;
 }
 .commentForm h2 {
     padding-bottom: 20px;
@@ -147,61 +183,51 @@ body{
 .help-block {
     color: silver;
 }
-.submitCom, .reportButton {
-    background: silver;
-    color: white;
-    font-weight: bold;
-    border: none;
-    padding: 10px;
-}
-.submitCom:hover, .reportButton:hover{
-    border: #696969 3px solid;
-    margin: -3px;
-}
-
-
 .comment {
     border-bottom: solid 1px;
     padding: 3px 10px;
     border-left: solid 1px;
     margin: 20px 0;
 }
-
 form{
     text-align: center;
 }
-
-
 .pages{
     text-align: center;
 }
-
 .warning {
-    color: red;
+    color: firebrick;
     font-weight: bold;
 }
-
 .moderate{
     font-style: italic;
     color: silver;
 }
 
 
-
-/*--Footer--*/
-.footer{
+/*--Admin--*/
+.homeAdmin {
     text-align: center;
-    margin-top: 50px;
-    background: #4d7dc5;
-    padding: 20px;
+    padding-bottom: 30px;
 }
-.textFooter {
+.homeConnectAdmin {
+    text-align: center;
+}
+.resportedComList {
+    text-align: center;
+    padding: 30px 0 30px 0;
+}
+.actionLink {
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
 }
-.adminLink, .adminLink:hover {
+.actionLink a {
     color: white;
+    font-size: 2rem;
+    margin-bottom: 30px
 }
+
 
 
 /*Media Queries*/
