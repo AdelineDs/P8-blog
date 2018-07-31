@@ -13,7 +13,8 @@ body{
 .disconnectAdmin,
 .submitPost,
 .confirm,
-.cancel{
+.cancel,
+.confirmCom{
     background: silver;
     color: white;
     font-weight: bold;
@@ -30,7 +31,8 @@ body{
 .disconnectAdmin:hover,
 .submitPost:hover,
 .confirm:hover,
-.cancel:hover{
+.cancel:hover,
+.confirmCom:hover{
     border: #696969 3px solid;
     margin: -3px;
 }
