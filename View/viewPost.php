@@ -40,7 +40,7 @@
                          }
                          ?>
                     <h3><?= strip_tags($com['author']); ?></h3>
-                    <h5> Le <em><?= $com['comment_date_fr']; ?></em></h5>
+                    <h4> Le <em><?= $com['comment_date_fr']; ?></em></h4>
                     <?php if($com['reported'] == 0 || $com['reported'] == 2 ){ ?>
                         <p>
                             <?= nl2br(strip_tags($com['comment'])); ?>
@@ -56,7 +56,7 @@
                        <?php
                         if (isset($_SESSION['id']) && isset($_SESSION['login']) )
                         { ?>
-                            <p class="gestionCom">
+                            <p class="comAdminManagement">
                                 <span><a href="<?= "index.php?action=moderateCom&AMP;id=" . $com['id'] ?>">Modérer le commentaire</a></span> /
                                 <span><a href="<?= "index.php?action=deleteCom&id=" . $com['id'] ?>">Supprimer le commentaire</a></span>
                             </p> 
@@ -73,24 +73,42 @@
             </div>
              <?php endforeach;?>
         </div>
- 
-<div class="col-xs-offset-1 col-xs-10 pages">
-<?php
-if (isset($_GET['page']) && $_GET['page'] > 1):
-    ?><a href="<?="?action=post&AMP;id=" . $post['id'] . "&page=" .($_GET['page'] - 1)?>">Page précédente</a> — <?php
-endif;
 
-if($nbPages > 1 ){
-/* On va effectuer une boucle autant de fois que l'on a de pages */
-for ($i = 1; $i <= $nbPages; $i++):
-    ?><a href="<?="?action=post&AMP;id=" . $post['id'] . "&page=" . $i ?>"><?= $i; ?></a> <?php
-endfor;
-}
-/* Avec le nombre total de pages, on peut aussi masquer le lien
- * vers la page suivante quand on est sur la dernière */
-if (isset($_GET['page']) && $_GET['page'] < $nbPages):
-    ?>— <a href="<?="?action=post&AMP;id=" . $post['id'] . "&AMP;page=" . ($_GET['page'] + 1) ?>">Page suivante</a><?php
-endif;
-?>
-     </div>
- 
+ <div class="col-xs-offset-1 col-xs-10 pages">
+    <nav aria-label="PageNavigation">
+        <ul class="pagination">
+            <?php if (isset($_GET['page']) && $_GET['page'] > 1):
+            ?><li class="page-item">
+                    <a class="page-link" href="<?="?action=post&AMP;id=" . $post['id'] . "&page=" .($_GET['page'] - 1)?>" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Page Précedente</span>
+                    </a>
+            </li>
+            <?php
+            endif;
+            if($nbPages > 1 ){
+            /* On va effectuer une boucle autant de fois que l'on a de pages */
+            for ($i = 1; $i <= $nbPages; $i++):
+            ?> <li class="page-item <?php if($i == $_GET['page']) : ?> active<?php endif;?>">
+                    <a class="page-link" href="<?="?action=post&AMP;id=" . $post['id'] . "&page=" . $i ?>">
+                        <?= $i; ?>
+                    </a>
+                </li>
+            <?php
+            endfor;
+            }
+            /* Avec le nombre total de pages, on peut aussi masquer le lien
+            * vers la page suivante quand on est sur la dernière */
+            if (isset($_GET['page']) && $_GET['page'] < $nbPages):
+            ?><li class="page-item">
+                    <a class="page-link" href="<?="?action=post&AMP;id=" . $post['id'] . "&page=" .($_GET['page'] - 1)?>" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Page suivante</span>
+                    </a>
+                </li>
+            <?php
+            endif;
+            ?>
+        </ul>
+    </nav>
+</div>

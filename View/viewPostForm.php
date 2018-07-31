@@ -9,7 +9,7 @@ if (isset($_SESSION['id']) AND isset($_SESSION['login']))
 <?php
     }
 ?>
-<div class="col-lg-offset-1 col-lg-10 col-md-offset-2 col-md-8 col-xs-offset-1 col-xs-10 newArticle">
+<div class="col-xs-offset-1 col-xs-10 newArticle">
     <h2>Ecrire un nouveau billet</h2>
         <?php
         if(isset($insert_erreur) AND $insert_erreur) :
@@ -18,9 +18,9 @@ if (isset($_SESSION['id']) AND isset($_SESSION['login']))
         <?php                            endif;?>
     <form <?php if(isset($post['id']) AND $post['id']) {?> action="index.php?action=recordPost&amp;id=<?= $post['id'] ?>&AMP;age=1"<?php } else {;?> action="index.php?action=createPost&AMP;page=1" <?php }?>method="post" class="col-xs-offset-1 col-xs-10 col-sm-offset-2 col-sm-8">
         <div class="form-group">
-            <label for="title">Titre : 
-                    <input name="title" id="title" type=text <?php if(isset($post['id']) AND $post['id']) :?> value="<?= strip_tags($post['title']);?>"<?php endif;?> required="">
-            </label>
+            <label for="title">Titre :
+                    <input name="title" id="title" type=text <?php if(isset($post['id']) AND $post['id']) :?> value="<?= strip_tags($post['title']);?>"<?php endif;?> required="" class="form-control">
+            </label>    
         </div>
         <div class="form-group">
             <label for="content">Contenu : 
@@ -29,9 +29,9 @@ if (isset($_SESSION['id']) AND isset($_SESSION['login']))
         </div>
         <div class="form-group">
             <label for="author">Auteur: 
-                <input name="author" id="author" type=text <?php if(isset($post['id']) AND $post['id']) :?> value="<?= strip_tags($post['author']);?>"<?php endif;?> required=""/>
+                <input name="author" id="author" type=text <?php if(isset($post['id']) AND $post['id']) :?> value="<?= strip_tags($post['author']);?>"<?php else : ?>value="Jean Forteroche" <?php endif;?> required="" class="form-control"/>
             </label>
         </div>
-        <input type="submit" value="Enregistrer le billet" class="envoi"/>
+        <input type="submit" value="Enregistrer le billet" class="submitPost"/>
     </form>
 </div>

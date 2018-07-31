@@ -22,7 +22,7 @@
     <?php
             if (isset($_SESSION['id']) AND isset($_SESSION['login']))
             {?>
-            <div class="gestionAdmin">
+            <div class="adminManagement">
                 <p>
                     <strong>Gestion du billet :</strong>
                     <span><a href="<?= "index.php?action=editPost&AMP;id=" . $post['id'] ?>">Modifier</a></span> /
@@ -40,23 +40,40 @@
 <?php endforeach;?>
 
 <div class="col-xs-offset-1 col-xs-10 pages">
-<?php
-if ($_GET['page'] > 1):
-    ?><a href="?action=blog&AMP;page=<?= $_GET['page'] - 1; ?>">Page précédente</a> — <?php
-endif;
-
-if($nbPages > 1 ){
-/* On va effectuer une boucle autant de fois que l'on a de pages */
-for ($i = 1; $i <= $nbPages; $i++):
-    ?><a href="?action=blog&AMP;page=<?= $i; ?>"><?= $i; ?></a> <?php
-endfor;
-}
-/* Avec le nombre total de pages, on peut aussi masquer le lien
- * vers la page suivante quand on est sur la dernière */
-if ($_GET['page'] < $nbPages):
-    ?>— <a href="?action=blog&AMP;page=<?= $_GET['page'] + 1; ?>">Page suivante</a><?php
-endif;
-?>
-
+    <nav aria-label="PageNavigation">
+        <ul class="pagination">
+            <?php if ($_GET['page'] > 1):
+            ?><li class="page-item">
+                    <a class="page-link" href="?action=blog&AMP;page=<?= $_GET['page'] - 1; ?>" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Page Précedente</span>
+                    </a>
+            </li>
+            <?php
+            endif;
+            if($nbPages > 1 ){
+            /* On va effectuer une boucle autant de fois que l'on a de pages */
+            for ($i = 1; $i <= $nbPages; $i++):
+            ?> <li class="page-item <?php if($i == $_GET['page']) : ?> active<?php endif;?>">
+                    <a class="page-link" href="?action=blog&AMP;page=<?= $i; ?>">
+                        <?= $i; ?>
+                    </a>
+                </li>
+            <?php
+            endfor;
+            }
+            /* Avec le nombre total de pages, on peut aussi masquer le lien
+            * vers la page suivante quand on est sur la dernière */
+            if ($_GET['page'] < $nbPages):
+            ?><li class="page-item">
+                    <a class="page-link" href="?action=blog&AMP;page=<?= $_GET['page'] + 1; ?>" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Page suivante</span>
+                    </a>
+                </li>
+            <?php
+            endif;
+            ?>
+        </ul>
+    </nav>
 </div>
-
