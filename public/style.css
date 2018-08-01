@@ -6,6 +6,15 @@ body{
     background: slategrey;
     color: white;
 }
+/*--forms--*/
+form{
+    text-align: center;
+}
+/*--Pagination--*/
+.pages{
+    text-align: center;
+}
+
 /*--Buttons--*/
 .submitCom, 
 .reportButton, 
@@ -51,7 +60,11 @@ body{
 
 /*--Navigation Menu--*/
 .menu ul {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
     margin: 0;
     padding: 0;
@@ -77,7 +90,10 @@ body{
     padding: 20px;
 }
 .textFooter {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-pack: distribute;
     justify-content: space-around;
 }
 .adminLink, .adminLink:hover {
@@ -120,42 +136,34 @@ body{
     position: relative;
 }
 
+/*posts home & blog*/
 .titlePost {
     color: #4d7dc5;
     background: white;
     padding: 4px;
 }
-
 .datePost {
     font-style: italic;
     color: silver;
 }
-
 .textPost {
     border-bottom: solid 1px;
     padding: 20px 0 5px 0;
 }
-
 .post {
     margin-bottom: 10rem;
 }
-
 .linkPost {
     color: silver;
     font-size: 2rem;
     font-weight: bold;
 }
-
 .post a:hover {
     text-shadow : 1px 1px 1px black;
     text-decoration: none;
 }
 
-.pages a {
-    color: silver;
-    font-size: 2rem;
-}
-
+/*--Contact--*/
 .contact {
     font-size: 2rem;
 }
@@ -167,6 +175,7 @@ body{
     text-align: justify;
 }
 
+/*--One Post--*/
 .onePostTitle {
     text-align: center;
     font-size: 2.3em;
@@ -181,6 +190,7 @@ body{
     font-size: 1.6rem;
 }
 
+/*--Comments--*/
 .commentForm {
     padding: 50px 0 50px 0;
      border-top: dashed 1px;
@@ -200,16 +210,6 @@ body{
 .comment h4{
     font-size: 1.2rem;
 }
-form{
-    text-align: center;
-}
-.pages{
-    text-align: center;
-}
-.warning {
-    color: firebrick;
-    font-weight: bold;
-}
 .moderate{
     font-style: italic;
     color: silver;
@@ -217,6 +217,10 @@ form{
 
 
 /*--Admin--*/
+.warning {
+    color: firebrick;
+    font-weight: bold;
+}
 .homeAdmin {
     text-align: center;
     padding-bottom: 30px;
@@ -229,8 +233,15 @@ form{
     padding: 30px 0 30px 0;
 }
 .actionLink {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
 }
 .actionLink a {
@@ -262,17 +273,15 @@ form{
 
 /*--Confirmation page--*/
 .buttonsConfirmation{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-pack: distribute;
     justify-content: space-around;
     margin-top: 30px
 }
 
 /*Media Queries*/
-
-@media all and (max-width: 1024px){
-    
-}
-
 @media all and (max-width: 768px){
     .menu ul{
         display: block;
