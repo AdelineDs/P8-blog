@@ -1,4 +1,9 @@
 <?php
+namespace AdelineD\OC\P8\Controler;
+
+use \AdelineD\OC\P8\View\View;
+use \AdelineD\OC\P8\Model\Admin;
+use \AdelineD\OC\P8\Model\Comment;
 
 require_once 'View/View.php';
 require_once 'Model/Admin.php';

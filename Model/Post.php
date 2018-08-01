@@ -1,4 +1,5 @@
 <?php
+namespace AdelineD\OC\P8\Model;
 
 require_once 'Model/Model.php';
 

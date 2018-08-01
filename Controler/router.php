@@ -1,8 +1,17 @@
 <?php
 
+use \AdelineD\OC\P8\Controler\ControlerHome;
+use \AdelineD\OC\P8\Controler\ControlerPost;
+use \AdelineD\OC\P8\Controler\ControlerContact;
+use \AdelineD\OC\P8\Controler\ControlerComment;
+use \AdelineD\OC\P8\Controler\ControlerAdmin;
+use \AdelineD\OC\P8\View\View;
+
 require_once 'View/View.php';
 
 function loadClass($class) {
+      $class = str_replace('AdelineD\OC\P8\Controler\\', '', $class);
+      $class = str_replace('\\', '/', $class);
       require $class. '.php';
   }
   

@@ -1,4 +1,5 @@
 <?php
+namespace AdelineD\OC\P8\Model;
 
 abstract class Model {
     
@@ -19,7 +20,7 @@ abstract class Model {
     // BDD connection
     private function getBdd(){
         if($this->bdd == null){
-            $this->bdd = new PDO('mysql:host=localhost;dbname=P8;charset=utf8', 'root', 'root', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+            $this->bdd = new \PDO('mysql:host=localhost;dbname=P8;charset=utf8', 'root', 'root', array(\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION));
         }
         return $this->bdd;
     }

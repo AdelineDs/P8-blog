@@ -1,4 +1,7 @@
 <?php
+namespace AdelineD\OC\P8\Controler;
+
+use \AdelineD\OC\P8\View\View;
 
 require_once 'VIew/View.php';
 
