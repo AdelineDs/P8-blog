@@ -1,6 +1,7 @@
 <?php
+session_start();
 
-require('Controler/Router.php');
+require('Engine/Router.php');
 
 $router = new Router();
 $router->routerQuery();

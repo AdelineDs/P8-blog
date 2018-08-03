@@ -1,21 +1,14 @@
 <?php
 
-use \AdelineD\OC\P8\Controler\ControlerHome;
-use \AdelineD\OC\P8\Controler\ControlerPost;
-use \AdelineD\OC\P8\Controler\ControlerContact;
-use \AdelineD\OC\P8\Controler\ControlerComment;
-use \AdelineD\OC\P8\Controler\ControlerAdmin;
+use \AdelineD\OC\P8\Controller\ControllerHome;
+use \AdelineD\OC\P8\Controller\ControllerPost;
+use \AdelineD\OC\P8\Controller\ControllerContact;
+use \AdelineD\OC\P8\Controller\ControllerComment;
+use \AdelineD\OC\P8\Controller\ControllerAdmin;
 use \AdelineD\OC\P8\View\View;
 
-require_once 'View/View.php';
-
-function loadClass($class) {
-      $class = str_replace('AdelineD\OC\P8\Controler\\', '', $class);
-      $class = str_replace('\\', '/', $class);
-      require $class. '.php';
-  }
-  
-spl_autoload_register('loadClass');
+require_once 'Autoloader.php';
+Autoloader::register();
 
 class Router {
     
@@ -27,11 +20,11 @@ class Router {
 
 
     public function __construct() {
-        $this->ctrlHome = new ControlerHome();
-        $this->ctrlPost = new ControlerPost();
-        $this->ctrlContact = new ControlerContact();
-        $this->ctrlAdmin = new ControlerAdmin();
-        $this->ctrlComment = new ControlerComment();
+        $this->ctrlHome = new ControllerHome();
+        $this->ctrlPost = new ControllerPost();
+        $this->ctrlContact = new ControllerContact();
+        $this->ctrlAdmin = new ControllerAdmin();
+        $this->ctrlComment = new ControllerComment();
     }
     
     public function routerQuery(){

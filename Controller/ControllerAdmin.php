@@ -1,15 +1,11 @@
 <?php
-namespace AdelineD\OC\P8\Controler;
+namespace AdelineD\OC\P8\Controller;
 
 use \AdelineD\OC\P8\View\View;
 use \AdelineD\OC\P8\Model\Admin;
 use \AdelineD\OC\P8\Model\Comment;
 
-require_once 'View/View.php';
-require_once 'Model/Admin.php';
-require_once 'Model/Comment.php';
-
-class ControlerAdmin {
+class ControllerAdmin {
 
     private $pass;
     private $login;
@@ -21,7 +17,6 @@ class ControlerAdmin {
     
   //display admin page
     public function view() {
-      session_start();
       $reportedCom = $this->comment->getReportedCom();
          $view = new View("Admin");
          $view->generate(array('reportedCom' => $reportedCom));
@@ -38,7 +33,6 @@ class ControlerAdmin {
           $view->generate(array('insert_erreur' => $insert_erreur));
       }
       else{
-         session_start();
          $_SESSION['id'] = $admin['id'];
          $_SESSION['login'] = $login;
          $reportedCom = $this->comment->getReportedCom();

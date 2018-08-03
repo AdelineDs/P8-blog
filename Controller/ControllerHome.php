@@ -1,13 +1,10 @@
 <?php
-namespace AdelineD\OC\P8\Controler;
+namespace AdelineD\OC\P8\Controller;
 
 use \AdelineD\OC\P8\Model\Post;
 use \AdelineD\OC\P8\View\View;
 
-require_once 'Model/Post.php';
-require_once 'View/VIew.php';
-
-class ControlerHome {
+class ControllerHome {
 
   private $post;
 
@@ -17,8 +14,6 @@ class ControlerHome {
 
   // Affiche la liste de tous les billets du blog
   public function home(){
-    if (!isset($_SESSION['id']) AND !isset($_SESSION['login'])){
-         session_start();}
     $posts = $this->post->getLastPosts();
     $view = new View("Home");
     $view->generate(array('posts' => $posts));

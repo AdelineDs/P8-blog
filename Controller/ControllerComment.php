@@ -1,15 +1,11 @@
 <?php
-namespace AdelineD\OC\P8\Controler;
+namespace AdelineD\OC\P8\Controller;
 
 use \AdelineD\OC\P8\Model\Post;
 use \AdelineD\OC\P8\Model\Comment;
 use \AdelineD\OC\P8\View\View;
 
-require_once 'Model/Post.php';
-require_once 'Model/Comment.php';
-require_once 'View/View.php';
-
-class ControlerComment {
+class ControllerComment {
 
   private $post;
   private $comment;
@@ -21,7 +17,6 @@ class ControlerComment {
 
     //affiche le formulaire de moderation d'un commentaire
     public function view($idCom) {
-      session_start();
       $comment = $this->comment->getComment($idCom);
       $view = new View("ComForm");
       $view->generate(array('comment' => $comment)); 
@@ -29,7 +24,6 @@ class ControlerComment {
   
   //Confirme la modification d'un commenatire
     public function moderate($idCom, $author, $comment) {
-      session_start();
       $this->comment->modifyComment($idCom, $author, $comment);
       $reportedCom = $this->comment->getReportedCom();
       $view = new View("Admin");
@@ -38,7 +32,6 @@ class ControlerComment {
   
   //affiche la page de confirmation de suppression d'un commentaire
     public function viewConfirmation($idCom) {
-      session_start();
       $comment = $this->comment->getComment($idCom);
       $view = new View("Confirmation");
       $view->generate(array ('comment' => $comment));
@@ -46,7 +39,6 @@ class ControlerComment {
   
   //confirme la suppression d'un commentaire
     public function confirm($idCom) {
-       session_start();
        $this->comment->confirm($idCom); 
        $reportedCom = $this->comment->getReportedCom();
        $view = new View("Admin");

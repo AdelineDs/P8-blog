@@ -1,15 +1,11 @@
 <?php
-namespace AdelineD\OC\P8\Controler;
+namespace AdelineD\OC\P8\Controller;
 
 use \AdelineD\OC\P8\Model\Post;
 use \AdelineD\OC\P8\Model\Comment;
 use \AdelineD\OC\P8\View\View;
 
-require_once 'Model/Post.php';
-require_once 'Model/Comment.php';
-require_once 'View/View.php';
-
-class ControlerPost {
+class ControllerPost {
 
   private $post;
   private $comment;
@@ -21,7 +17,6 @@ class ControlerPost {
 
   // display post content
   public function post($postId, $page) {
-    session_start();
     $post = $this->post->getPost($postId);
     $comments = $this->comment->getComments($postId, $page);
     $nbPages = $this->comment->getNbPages($postId);
@@ -31,7 +26,6 @@ class ControlerPost {
   
     // display all posts
   public function blog($page){
-      session_start();
       $posts = $this->post->getPosts($page);
       $nbPages = $this->post->getNbPages();
       $view = new View("Blog");
@@ -49,7 +43,6 @@ class ControlerPost {
   
     //affiche le formulaire de rédaction/modification d'un billet
     public function view($postId = null) {
-        session_start();
         if ($postId == null) {
             $view = new View("PostForm");
             $view->generate(array (null));
@@ -70,7 +63,6 @@ class ControlerPost {
 
     //modifie un billet
     public function editPost($postId, $title, $content, $author) {
-        session_start();
         $this->post->editPost($postId, $title, $content, $author);
         $page=1;
         $this->post($postId, $page);
@@ -78,7 +70,6 @@ class ControlerPost {
     
     //affiche la page de confirmation de suppression d'un billet
     public function ViewConfirmation($postId) {
-        session_start();
         $post = $this->post->getPost($postId);
         $view = new View("Confirmation");
         $view->generate(array ('post' => $post));
