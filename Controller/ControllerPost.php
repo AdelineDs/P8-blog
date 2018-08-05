@@ -41,7 +41,7 @@ class ControllerPost {
     $this->post($postId, $page);
   }
   
-    //affiche le formulaire de rédaction/modification d'un billet
+    //display the form for writing/modification of a post
     public function view($postId = null) {
         if ($postId == null) {
             $view = new View("PostForm");
@@ -54,28 +54,28 @@ class ControllerPost {
         }
     }
 
-    //ajoute un billet
+    //add a post
     public function createPost($title, $content, $author) {
         $this->post->insertPost($title, $content, $author); 
         $page = 1;
         $this->blog($page);
     }
 
-    //modifie un billet
+    //edit a post
     public function editPost($postId, $title, $content, $author) {
         $this->post->editPost($postId, $title, $content, $author);
         $page=1;
         $this->post($postId, $page);
     }
     
-    //affiche la page de confirmation de suppression d'un billet
+    //display the confirmation page for deleting a post
     public function ViewConfirmation($postId) {
         $post = $this->post->getPost($postId);
         $view = new View("Confirmation");
         $view->generate(array ('post' => $post));
     }
     
-     //confirme la suppression d'un billet
+     //confirm deleting post
     public function confirm($postId) {
         $this->comment->deleteCom($postId);    
         $this->post->deletePost($postId); 
@@ -83,7 +83,7 @@ class ControllerPost {
         $this->blog($page);
     }
     
-    //update la bdd pour placé le commmentaire comme signalé 
+    //update bdd for a reported comment
     public function reportComment($comId, $postId, $page) {
         $this->comment->reportCom($comId);
         $this->post($postId, $page); 

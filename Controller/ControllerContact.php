@@ -5,7 +5,7 @@ use \AdelineD\OC\P8\View\View;
 
 class ControllerContact {
 
-  // Affiche la page de contact
+  //Display contact page
   public function view() {
     $vue = new View("Contact");
     $vue->generate(array (null));

@@ -12,7 +12,7 @@ class ControllerHome {
     $this->post = new Post();
   }
 
-  // Affiche la liste de tous les billets du blog
+  //display latest post in home page
   public function home(){
     $posts = $this->post->getLastPosts();
     $view = new View("Home");

@@ -29,9 +29,10 @@
                     </ul>
                 </div>
             </header>
+            <!-- content -->
             <div class="row content">
                 <?= $content ?>
-            </div> <!-- #contenu -->
+            </div>
             <footer class="row footer">
                 <div class="col-xs-12 textFooter">
                     <p>Blog réalisé avec PHP, HTML5 et CSS.</p>

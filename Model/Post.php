@@ -14,7 +14,7 @@ class Post extends Model {
         return $posts;
     }
     
-        // Return the 2 latest posts order by decreasing publication date
+    // Return the 2 latest posts order by decreasing publication date
     public function getLastPosts(){
         $sql = 'SELECT id, title, content, author, DATE_FORMAT(publication_date, \'%d/%m/%Y à %Hh%imin%ss\')'
                 . ' AS publication_date_fr FROM posts ORDER BY publication_date DESC LIMIT 0,2';
@@ -44,20 +44,20 @@ class Post extends Model {
         return $nbPages;
     }
     
-    // fonction qui realise l'insertion dans la base de données
+    //insert new post in database
     public function insertPost($title, $content, $author){
         $sql = 'INSERT INTO posts(title, content, author, publication_date) VALUES(?,?, ?, NOW())';
         $this->executeQuery($sql, array($title, $content, $author));
     }
 
 
-    // fonction qui realise la modification dans la base de données
+    //edit post in database
     public function editPost($postId, $title, $content, $author){
         $sql = 'UPDATE posts SET title =?, content=?, author=? WHERE id=?';
         $result = $this->executeQuery($sql, array($title, $content, $author, $postId));
     }
     
-    //fonction qui realise la suppression dans la base de données
+    //delete post in database
     public function deletePost($postId) {
         $sql = 'DELETE FROM posts WHERE id= ?';
         $this->executeQuery($sql, array($postId));

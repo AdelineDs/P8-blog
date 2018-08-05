@@ -21,7 +21,8 @@ class Comment extends Model {
         $comments = $this->executeQuery($sql);
         return $comments;
     }
-   
+
+    //count the number og comment for a post
     public function getNbPages($postId){
         $sql = 'SELECT COUNT(*) AS nbComments FROM comments WHERE post_id= ?';
         $data = $this->executeQuery($sql, array($postId));
@@ -37,19 +38,19 @@ class Comment extends Model {
         $this->executeQuery($sql, array($postId, $author, $comment, $date));
     }
 
-    //realise la suppression de tout les commentaires associés à un billet dans la base de données
+    //delete all comments associated with a post in database
     public function deleteCom($postId) {
         $sql = 'DELETE FROM comments WHERE post_id= ?';
         $this->executeQuery($sql, array($postId));
     }
     
-    //realise la modification de la base de données quand un commentaire est signalé
+    //update a reported comment
     public function reportCom($idCom){
         $sql = 'UPDATE comments SET reported=1  WHERE id=?';
         $this->executeQuery($sql, array($idCom));
     }
     
-    // renvoie un commentaire 
+    //return a comment
     public function getComment($idCom) {
         $sql = 'SELECT id, post_id, author, comment, DATE_FORMAT'
               . '(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM '
@@ -57,19 +58,19 @@ class Comment extends Model {
         $comment= $this->executeQuery($sql, array($idCom));
         if ($comment->rowCount() == 1) {
             return $comment->fetch();
-        }  // Accès à la première ligne de résultat
+        }  //access to the first line of results
         else {
             throw new Exception("Aucun commentaire ne correspond à l'identifiant '$idCom'");
         }
     }
 
-    //realise la modification de la base de données après la modération d'un commentaire
+    //update the database after a comment moderation
     public function modifyComment($idCom, $author, $comment){
         $sql = 'UPDATE comments SET author= ?, comment=?, reported=2 WHERE id=?';
         $this->executeQuery($sql, array($author, $comment, $idCom));
     }
 
-    //realise la suppression d'un commentaire dans la base de données
+    //delete a comment in database
     public function confirm($idCom) {
         $sql = 'DELETE FROM comments WHERE id= ?';
         $this->executeQuery($sql, array($idCom));

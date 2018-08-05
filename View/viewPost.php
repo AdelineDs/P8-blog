@@ -1,14 +1,14 @@
 <?php $this->title = strip_tags($post['title']); ?>
 
-    <div class="row">
-        <div class="col-md-offset-2 col-md-8 col-xs-offset-1 col-xs-10 onePost">
-            <h2 class="onePostTitle"><?= strip_tags($post['title']); ?></h2>
-                <p class="postContent">
-                    <?= $post['content']; ?>
-                </p>
-                <h5 class="onePostDate"> Le <em><?= $post['publication_date_fr']; ?></em>  Par <strong><?= strip_tags($post['author']); ?></strong></h5>
-        </div>
-    </div> 
+<div class="row">
+    <div class="col-md-offset-2 col-md-8 col-xs-offset-1 col-xs-10 onePost">
+        <h2 class="onePostTitle"><?= strip_tags($post['title']); ?></h2>
+        <p class="postContent">
+            <?= $post['content']; ?>
+        </p>
+        <h5 class="onePostDate"> Le <em><?= $post['publication_date_fr']; ?></em>  Par <strong><?= strip_tags($post['author']); ?></strong></h5>
+    </div>
+</div>
 <div class="row">
     <div class="col-md-offset-2 col-md-8 col-xs-offset-1 col-xs-10 commentForm">
     <h2>Laisser un commentaire :</h2>
@@ -27,18 +27,15 @@
     </form>
     </div>
 </div>
-    <div class="row">
-        <div class="col-md-offset-2 col-md-8 col-xs-offset-1 col-xs-10  listCom">
-            <?php
-            foreach($comments as $com): ?>
+<div class="row">
+    <div class="col-md-offset-2 col-md-8 col-xs-offset-1 col-xs-10  listCom">
+        <?php
+        foreach($comments as $com): ?>
             <div class="comment">
-                    <?php
-                        if (isset($_SESSION['id']) && isset($_SESSION['login']) && $com['reported'] == 1 )
-                        { ?>
-                            <p class="warning">Commentaire à modérer</p>
-                        <?php
-                         }
-                         ?>
+                <?php if (isset($_SESSION['id']) && isset($_SESSION['login']) && $com['reported'] == 1 )
+                { ?>
+                    <p class="warning">Commentaire à modérer</p>
+                <?php } ?>
                     <h3><?= strip_tags($com['author']); ?></h3>
                     <h4> Le <em><?= $com['comment_date_fr']; ?></em></h4>
                     <?php if($com['reported'] == 0 || $com['reported'] == 2 ){ ?>
@@ -63,12 +60,12 @@
                         <?php
                          } ?>
                 <?php if($com['reported'] == 0){ ?>
-                       <form method="post" action="index.php?action=report">
-                           <input type="hidden" name="comId" value="<?= $com['id'] ?>" />
-                           <input type="hidden" name="postId" value="<?= $post['id'] ?>" />
-                           <input type="hidden" name="page" value="<?= $_GET['page'] ?>" />
-                           <input type="submit" value="Signaler le commentaire" class="reportButton"/>
-                       </form> 
+                    <form method="post" action="index.php?action=report">
+                        <input type="hidden" name="comId" value="<?= $com['id'] ?>" />
+                        <input type="hidden" name="postId" value="<?= $post['id'] ?>" />
+                        <input type="hidden" name="page" value="<?= $_GET['page'] ?>" />
+                        <input type="submit" value="Signaler le commentaire" class="reportButton"/>
+                    </form>
                 <?php } ?>
             </div>
              <?php endforeach;?>
@@ -77,38 +74,34 @@
  <div class="col-xs-offset-1 col-xs-10 pages">
     <nav aria-label="PageNavigation">
         <ul class="pagination">
-            <?php if (isset($_GET['page']) && $_GET['page'] > 1):
-            ?><li class="page-item">
+            <?php
+            //displaying link for previous page is current page isn't the firs
+            if (isset($_GET['page']) && $_GET['page'] > 1): ?>
+                <li class="page-item">
                     <a class="page-link" href="<?="?action=post&AMP;id=" . $post['id'] . "&page=" .($_GET['page'] - 1)?>" aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
                         <span class="sr-only">Page Précedente</span>
                     </a>
-            </li>
-            <?php
-            endif;
-            if($nbPages > 1 ){
-            /* On va effectuer une boucle autant de fois que l'on a de pages */
-            for ($i = 1; $i <= $nbPages; $i++):
-            ?> <li class="page-item <?php if($i == $_GET['page']) : ?> active<?php endif;?>">
-                    <a class="page-link" href="<?="?action=post&AMP;id=" . $post['id'] . "&page=" . $i ?>">
-                        <?= $i; ?>
-                    </a>
                 </li>
-            <?php
-            endfor;
+            <?php endif;
+            if($nbPages > 1 ) {
+                for ($i = 1; $i <= $nbPages; $i++): ?>
+                    <li class="page-item <?php if($i == $_GET['page']) : ?> active<?php endif;?>">
+                        <a class="page-link" href="<?="?action=post&AMP;id=" . $post['id'] . "&page=" . $i ?>">
+                            <?= $i; ?>
+                        </a>
+                    </li>
+                <?php endfor;
             }
-            /* Avec le nombre total de pages, on peut aussi masquer le lien
-            * vers la page suivante quand on est sur la dernière */
-            if (isset($_GET['page']) && $_GET['page'] < $nbPages):
-            ?><li class="page-item">
+            //displaying ling for net page if current page isn't last
+            if (isset($_GET['page']) && $_GET['page'] < $nbPages): ?>
+                <li class="page-item">
                     <a class="page-link" href="<?="?action=post&AMP;id=" . $post['id'] . "&page=" .($_GET['page'] - 1)?>" aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                         <span class="sr-only">Page suivante</span>
                     </a>
                 </li>
-            <?php
-            endif;
-            ?>
+            <?php endif; ?>
         </ul>
     </nav>
 </div>

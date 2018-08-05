@@ -15,14 +15,14 @@ class ControllerComment {
     $this->comment = new Comment();
   }
 
-    //affiche le formulaire de moderation d'un commentaire
+    //display the moderation for of a comment
     public function view($idCom) {
       $comment = $this->comment->getComment($idCom);
       $view = new View("ComForm");
       $view->generate(array('comment' => $comment)); 
   }
   
-  //Confirme la modification d'un commenatire
+    //Confirm the modification of a comment
     public function moderate($idCom, $author, $comment) {
       $this->comment->modifyComment($idCom, $author, $comment);
       $reportedCom = $this->comment->getReportedCom();
@@ -30,14 +30,14 @@ class ControllerComment {
       $view->generate(array('reportedCom' => $reportedCom));
   }
   
-  //affiche la page de confirmation de suppression d'un commentaire
+    //display the confirmation page for deleting a comment
     public function viewConfirmation($idCom) {
       $comment = $this->comment->getComment($idCom);
       $view = new View("Confirmation");
       $view->generate(array ('comment' => $comment));
   }
   
-  //confirme la suppression d'un commentaire
+    //confirm deleting comment
     public function confirm($idCom) {
        $this->comment->confirm($idCom); 
        $reportedCom = $this->comment->getReportedCom();
