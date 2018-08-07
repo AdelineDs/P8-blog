@@ -1,8 +1,6 @@
 <?php
 namespace AdelineD\OC\P8\Model;
 
-require_once 'Model/Model.php';
-
 class Comment extends Model {
     
 // return all comment of a post
@@ -10,7 +8,7 @@ class Comment extends Model {
         $start = ($page-1)*5;
         $sql = 'SELECT id, post_id, author, comment, reported, DATE_FORMAT'
               . '(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM '
-              . 'comments WHERE post_id= ? ORDER BY reported DESC, comment_date DESC LIMIT 5 OFFSET '.$start.'';
+              . 'comments WHERE post_id= ? ORDER BY comment_date DESC LIMIT 5 OFFSET '.$start.'';
         $comments = $this->executeQuery($sql,array($postId));
         return $comments;
     }

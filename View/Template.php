@@ -2,6 +2,7 @@
 <html lang="fr">
     <head>
         <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
         crossorigin="anonymous">
         <link rel="stylesheet" href="public/style.css" />
@@ -36,6 +37,7 @@
             <footer class="row footer">
                 <div class="col-xs-12 textFooter">
                     <p>Blog réalisé avec PHP, HTML5 et CSS.</p>
+                    <a href="index.php?action=LegalNotice" class="adminLink">Mentions Légales</a>
                     <a href="index.php?action=admin" class="adminLink">Administration</a>
                 </div>
             </footer>

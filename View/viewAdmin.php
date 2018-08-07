@@ -10,7 +10,7 @@ if (isset($_SESSION['id']) AND isset($_SESSION['login']))
     <div class="col-md-offset-2 col-md-8 col-xs-offset-1 col-xs-10 resportedComList">
         <?php foreach ($reportedCom as $com): ?>
             <div class="warning">
-                Le commentaire de "<?= $com['author']?>" a été signaler sur le billet : <?= $com['title']?>
+                Le commentaire de "<?= $com['author']?>" a été signalé sur le billet : <?= $com['title']?>
             </div>
         <?php endforeach;?>
     </div>

@@ -1,8 +1,6 @@
 <?php
 namespace AdelineD\OC\P8\Model;
 
-require_once 'Model/Model.php';
-
 class Admin extends Model {
     
     //get admin account

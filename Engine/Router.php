@@ -5,6 +5,7 @@ use \AdelineD\OC\P8\Controller\ControllerPost;
 use \AdelineD\OC\P8\Controller\ControllerContact;
 use \AdelineD\OC\P8\Controller\ControllerComment;
 use \AdelineD\OC\P8\Controller\ControllerAdmin;
+use \AdelineD\OC\P8\Controller\ControllerLegalNotice;
 use \AdelineD\OC\P8\View\View;
 
 //class autoloading
@@ -18,6 +19,7 @@ class Router {
     private $ctrlContact;
     private $ctrlAdmin;
     private $ctrlComment;
+    private $ctrlLegalNotice;
 
 
     public function __construct() {
@@ -26,6 +28,7 @@ class Router {
         $this->ctrlContact = new ControllerContact();
         $this->ctrlAdmin = new ControllerAdmin();
         $this->ctrlComment = new ControllerComment();
+        $this->ctrlLegalNotice = new ControllerLegalNotice();
     }
     
     public function routerQuery(){
@@ -76,6 +79,10 @@ class Router {
                 //display contact page
                 elseif($_GET['action'] == 'contact'){
                     $this->ctrlContact->view();
+                }
+                //display Legal Notice page
+                elseif($_GET['action'] == 'LegalNotice'){
+                    $this->ctrlLegalNotice->view();
                 }
                 //display admin page
                 elseif ($_GET['action'] == 'admin') {

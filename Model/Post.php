@@ -1,8 +1,6 @@
 <?php
 namespace AdelineD\OC\P8\Model;
 
-require_once 'Model/Model.php';
-
 class Post extends Model {
     
     // Return all post order by decreasing id

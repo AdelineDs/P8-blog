@@ -102,6 +102,9 @@ form{
 
 
 /*------ Content ------*/
+.content{
+    min-height: 50vh;
+}
 /*--Home--*/
 .presentation{
     text-align: center;
@@ -136,7 +139,7 @@ form{
     position: relative;
 }
 
-/*posts home & blog*/
+/*--posts home & blog--*/
 .titlePost {
     color: #4d7dc5;
     background: white;
@@ -215,6 +218,10 @@ form{
     color: silver;
 }
 
+/*--Legal Notice --*/
+.legalNotice{
+    text-align: justify;
+}
 
 /*--Admin--*/
 .warning {
@@ -279,6 +286,11 @@ form{
     -ms-flex-pack: distribute;
     justify-content: space-around;
     margin-top: 30px
+}
+
+/*-- Error Page --*/
+.error{
+    text-align: center;
 }
 
 /*Media Queries*/
