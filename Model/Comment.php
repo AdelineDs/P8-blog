@@ -15,7 +15,7 @@ class Comment extends Model {
     
     // return all reported comment
     public function getReportedCom() {
-        $sql = 'SELECT posts.title, comments.author FROM posts INNER JOIN comments ON comments.post_id=posts.id WHERE comments.reported=1';
+        $sql = 'SELECT * FROM posts INNER JOIN comments ON comments.post_id=posts.id WHERE comments.reported=1';
         $comments = $this->executeQuery($sql);
         return $comments;
     }

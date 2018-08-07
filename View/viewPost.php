@@ -31,45 +31,46 @@
     <div class="col-md-offset-2 col-md-8 col-xs-offset-1 col-xs-10  listCom">
         <?php
         foreach($comments as $com): ?>
-            <div class="comment">
-                <?php if (isset($_SESSION['id']) && isset($_SESSION['login']) && $com['reported'] == 1 )
-                { ?>
-                    <p class="warning">Commentaire signalé, en attente de modération.</p>
+                <div class="comment">
+                    <?php
+                    if (isset($_SESSION['id']) && isset($_SESSION['login']) && $com['reported'] == 1 )
+                    { ?>
+                        <p class="warning">Commentaire à modérer</p>
+                        <?php
+                    }
+                    ?>
                     <h3><?= strip_tags($com['author']); ?></h3>
                     <h4> Le <em><?= $com['comment_date_fr']; ?></em></h4>
-                    <p>
-                        <?= nl2br(strip_tags($com['comment'])); ?>
-                    </p>
-                    <p class="comAdminManagement">
-                        <span><a href="<?= "index.php?action=moderateCom&AMP;id=" . $com['id'] ?>">Modérer le commentaire</a></span> /
-                        <span><a href="<?= "index.php?action=deleteCom&id=" . $com['id'] ?>">Supprimer le commentaire</a></span>
-                    </p>
-                <?php } else { ?>
-                    <h3><?= strip_tags($com['author']); ?></h3>
-                    <h4> Le <em><?= $com['comment_date_fr']; ?></em></h4>
-                    <?php if ($com['reported'] == 0 || $com['reported'] == 2) { ?>
+                    <?php if($com['reported'] == 0 || $com['reported'] == 2 ){ ?>
                         <p>
                         <?= nl2br(strip_tags($com['comment'])); ?>
-                        <?php if ($com['reported'] == 2) { ?>
+                        <?php if( $com['reported'] == 2 ){ ?>
                             <p class="moderate">Ce commentaire a été modéré par l'administrateur du site.</p>
                         <?php } ?>
                         </p>
                     <?php } else { ?>
                         <p>
-                            Ce commentaire a été signalé par un internaute et est en attente de modération. Merci de votre
-                            compréhension.
+                            Ce commentaire a été signalé par un internaute et est en attente de modération. Merci de votre compréhension.
                         </p>
                     <?php } ?>
-                    <?php if ($com['reported'] == 0) { ?>
+                    <?php
+                    if (isset($_SESSION['id']) && isset($_SESSION['login']) )
+                    { ?>
+                        <p class="comAdminManagement">
+                            <span><a href="<?= "index.php?action=moderateCom&AMP;id=" . $com['id'] ?>">Modérer le commentaire</a></span> /
+                            <span><a href="<?= "index.php?action=deleteCom&id=" . $com['id'] ?>">Supprimer le commentaire</a></span>
+                        </p>
+                        <?php
+                    } ?>
+                    <?php if($com['reported'] == 0){ ?>
                         <form method="post" action="index.php?action=report">
-                            <input type="hidden" name="comId" value="<?= $com['id'] ?>"/>
-                            <input type="hidden" name="postId" value="<?= $post['id'] ?>"/>
-                            <input type="hidden" name="page" value="<?= $_GET['page'] ?>"/>
+                            <input type="hidden" name="comId" value="<?= $com['id'] ?>" />
+                            <input type="hidden" name="postId" value="<?= $post['id'] ?>" />
+                            <input type="hidden" name="page" value="<?= $_GET['page'] ?>" />
                             <input type="submit" value="Signaler le commentaire" class="reportButton"/>
                         </form>
-                    <?php }
-    }?>
-            </div>
+                    <?php } ?>
+                </div>
              <?php endforeach;?>
         </div>
 

@@ -15,7 +15,7 @@ class ControllerComment {
     $this->comment = new Comment();
   }
 
-    //display the moderation for of a comment
+    //display the moderation page for a comment
     public function view($idCom) {
       $comment = $this->comment->getComment($idCom);
       $view = new View("ComForm");

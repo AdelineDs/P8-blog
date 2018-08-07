@@ -11,6 +11,10 @@ if (isset($_SESSION['id']) AND isset($_SESSION['login']))
         <?php foreach ($reportedCom as $com): ?>
             <div class="warning">
                 Le commentaire de "<?= $com['author']?>" a été signalé sur le billet : <?= $com['title']?>
+                <p class="comAdminManagement">
+                    <span><a href="<?= "index.php?action=moderateCom&AMP;id=" . $com['id'] ?>">Modérer le commentaire</a></span> /
+                    <span><a href="<?= "index.php?action=deleteCom&id=" . $com['id'] ?>">Supprimer le commentaire</a></span>
+                </p>
             </div>
         <?php endforeach;?>
     </div>

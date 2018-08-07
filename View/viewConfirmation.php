@@ -38,7 +38,7 @@ if (isset($_SESSION['id']) AND isset($_SESSION['login']))
                     <input  class="confirm" type="submit" value="OUI">
                 </form>
             <?php } ?>
-            <form action="index.php?action=blog&AMP;page=1" method="post">
+            <form action="index.php?action=admin" method="post">
                 <input  class="cancel" type="submit" value="NON">
             </form>
         </div>
