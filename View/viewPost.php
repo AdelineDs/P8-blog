@@ -1,16 +1,13 @@
 <?php $this->title = strip_tags($post['title']); ?>
 
-<div class="row">
-    <div class="col-md-offset-2 col-md-8 col-xs-offset-1 col-xs-10 onePost">
-        <h2 class="onePostTitle"><?= strip_tags($post['title']); ?></h2>
-        <p class="postContent">
-            <?= $post['content']; ?>
-        </p>
-        <h5 class="onePostDate"> Le <em><?= $post['publication_date_fr']; ?></em>  Par <strong><?= strip_tags($post['author']); ?></strong></h5>
-    </div>
+<div class="col-md-offset-2 col-md-8 col-xs-offset-1 col-xs-10 onePost">
+    <h2 class="onePostTitle"><?= strip_tags($post['title']); ?></h2>
+    <p class="postContent">
+       <?= $post['content']; ?>
+    </p>
+    <h5 class="onePostDate"> Le <em><?= $post['publication_date_fr']; ?></em>  Par <strong><?= strip_tags($post['author']); ?></strong></h5>
 </div>
-<div class="row">
-    <div class="col-md-offset-2 col-md-8 col-xs-offset-1 col-xs-10 commentForm">
+<div class="col-md-offset-2 col-md-8 col-xs-offset-1 col-xs-10 text-center commentForm">
     <h2>Laisser un commentaire :</h2>
     <form action="index.php?action=comment&AMP;page=1" method="post">
         <input type="hidden" value="<?= $post['id']?>" name="id"/>
@@ -25,54 +22,52 @@
         </div>
         <input type="submit" value="Commenter" class="submitCom">
     </form>
-    </div>
 </div>
-<div class="row">
-    <div class="col-md-offset-2 col-md-8 col-xs-offset-1 col-xs-10  listCom">
-        <?php
-        foreach($comments as $com): ?>
-                <div class="comment">
+<div class="col-md-offset-2 col-md-8 col-xs-offset-1 col-xs-10  listCom">
+    <?php
+    foreach($comments as $com): ?>
+            <div class="comment">
+                <?php
+                if (isset($_SESSION['id']) && isset($_SESSION['login']) && $com['reported'] == 1 )
+                { ?>
+                    <p class="warning">Commentaire à modérer</p>
                     <?php
-                    if (isset($_SESSION['id']) && isset($_SESSION['login']) && $com['reported'] == 1 )
-                    { ?>
-                        <p class="warning">Commentaire à modérer</p>
-                        <?php
-                    }
-                    ?>
-                    <h3><?= strip_tags($com['author']); ?></h3>
-                    <h4> Le <em><?= $com['comment_date_fr']; ?></em></h4>
-                    <?php if($com['reported'] == 0 || $com['reported'] == 2 ){ ?>
-                        <p>
-                        <?= nl2br(strip_tags($com['comment'])); ?>
-                        <?php if( $com['reported'] == 2 ){ ?>
-                            <p class="moderate">Ce commentaire a été modéré par l'administrateur du site.</p>
-                        <?php } ?>
-                        </p>
-                    <?php } else { ?>
-                        <p>
-                            Ce commentaire a été signalé par un internaute et est en attente de modération. Merci de votre compréhension.
-                        </p>
+                }
+                ?>
+                <h3><?= strip_tags($com['author']); ?></h3>
+                <h4> Le <em><?= $com['comment_date_fr']; ?></em></h4>
+                <?php if($com['reported'] == 0 || $com['reported'] == 2 ){ ?>
+                    <p>
+                    <?= nl2br(strip_tags($com['comment'])); ?>
+                    </p>
+                    <?php if( $com['reported'] == 2 ){ ?>
+                        <p class="moderate">Ce commentaire a été modéré par l'administrateur du site.</p>
                     <?php } ?>
+                <?php } else { ?>
+                    <p>
+                        Ce commentaire a été signalé par un internaute et est en attente de modération. Merci de votre compréhension.
+                    </p>
+                <?php } ?>
+                <?php
+                if (isset($_SESSION['id']) && isset($_SESSION['login']) )
+                { ?>
+                    <p class="comAdminManagement">
+                        <span><a href="<?= "index.php?action=moderateCom&AMP;id=" . $com['id'] ?>">Modérer le commentaire</a></span> /
+                        <span><a href="<?= "index.php?action=deleteCom&id=" . $com['id'] ?>">Supprimer le commentaire</a></span>
+                    </p>
                     <?php
-                    if (isset($_SESSION['id']) && isset($_SESSION['login']) )
-                    { ?>
-                        <p class="comAdminManagement">
-                            <span><a href="<?= "index.php?action=moderateCom&AMP;id=" . $com['id'] ?>">Modérer le commentaire</a></span> /
-                            <span><a href="<?= "index.php?action=deleteCom&id=" . $com['id'] ?>">Supprimer le commentaire</a></span>
-                        </p>
-                        <?php
-                    } ?>
-                    <?php if($com['reported'] == 0){ ?>
-                        <form method="post" action="index.php?action=report">
-                            <input type="hidden" name="comId" value="<?= $com['id'] ?>" />
-                            <input type="hidden" name="postId" value="<?= $post['id'] ?>" />
-                            <input type="hidden" name="page" value="<?= $_GET['page'] ?>" />
-                            <input type="submit" value="Signaler le commentaire" class="reportButton"/>
-                        </form>
-                    <?php } ?>
-                </div>
-             <?php endforeach;?>
-        </div>
+                } ?>
+                <?php if($com['reported'] == 0){ ?>
+                    <form method="post" action="index.php?action=report">
+                        <input type="hidden" name="comId" value="<?= $com['id'] ?>" />
+                        <input type="hidden" name="postId" value="<?= $post['id'] ?>" />
+                        <input type="hidden" name="page" value="<?= $_GET['page'] ?>" />
+                        <input type="submit" value="Signaler le commentaire" class="reportButton"/>
+                    </form>
+                <?php } ?>
+            </div>
+     <?php endforeach;?>
+</div>
 
  <div class="col-xs-offset-1 col-xs-10 pages">
     <nav aria-label="PageNavigation">

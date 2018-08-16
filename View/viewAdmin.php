@@ -38,8 +38,7 @@ else { ?>
             <p class="warning"><?= $insert_erreur ?></p>
         <?php endif;?>
     </div>
-    <div class="row">
-        <div class="col-md-offset-4 col-md-4 col-sm-offset-3 col-sm-6 col-xs-offset-1 col-xs-10 adminForm">
+    <div class="col-md-offset-4 col-md-4 col-sm-offset-3 col-sm-6 col-xs-offset-1 col-xs-10 adminForm">
         <form action="index.php?action=manageAdmin" method="post">
             <div class="form-group">
                 <label for="login">Entrez votre login : </label>
@@ -47,11 +46,10 @@ else { ?>
             </div>
             <div class="form-group">
                 <label for="pass">Entrez votre mot de passe : </label>
-                <input name="pass" id="pass" class="form-control" type=password required=""></input>
+                <input name="pass" id="pass" class="form-control" type=password required="">
             </div>
             <input type="submit" value="Se connecter" class="connectAdmin">
         </form>
-        </div>
     </div>
 <?php } ?>
 

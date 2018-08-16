@@ -100,9 +100,9 @@ class Router {
                }
                //disconnect admin
                elseif ($_GET['action'] == 'disconnect'){
-                session_start();
-                session_destroy();
-                $this->ctrlAdmin->view();
+                   session_unset();
+                   session_destroy();
+                   $this->ctrlAdmin->view();
               }
               //access to the post writing form
               elseif ($_GET['action'] == 'postForm') {
@@ -247,9 +247,9 @@ class Router {
         }
     }
 
-        private function error($msgError){
+    private function error($msgError){
         $view = new View("Error");
         $view->generate(array('msgError' => $msgError));
-}
+    }
 }//--end class Router      
 
